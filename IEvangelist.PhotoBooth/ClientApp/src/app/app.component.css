@@ -4,3 +4,15 @@
     padding-top: 50px;
   }
 }
+
+:host {
+  overflow: hidden;
+}
+
+.body-content {
+  overflow: hidden;
+}
+
+.container-fluid {
+  overflow: hidden;
+}

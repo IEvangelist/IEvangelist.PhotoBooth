@@ -1,0 +1,5 @@
+<div class="video-wrapper">
+  <control-wizard (takePhoto)="onTakePhoto($event)"></control-wizard>
+  <video (window:resize)="adjustVideoHeight($event)" #video autoplay></video>
+  <canvas #canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+</div>
