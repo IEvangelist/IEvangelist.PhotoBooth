@@ -11,11 +11,8 @@ namespace IEvangelist.PhotoBooth.Controllers
         [HttpPost, Route("generate")]
         public async Task<IActionResult> Generate(
             [FromBody] ImagesPostRequest imagesPostRequest,
-            [FromServices] IImageProcessorService imageProcessor)
-        {
-            var response = await imageProcessor.ProcessImagesAsync(imagesPostRequest);
-            return Json(response);
-        }
+            [FromServices] IImageProcessorService imageProcessor) 
+            => Json(await imageProcessor.ProcessImagesAsync(imagesPostRequest));
 
         [HttpGet, Route("options")]
         public IActionResult GetOptions(
