@@ -6,13 +6,13 @@
 }
 
 :host {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 .body-content {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 .container-fluid {
-  overflow: hidden;
+  overflow: hidden !important;
 }

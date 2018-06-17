@@ -1,15 +1,14 @@
 :host {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 .overlay {
   z-index: 777;
   position: absolute;
-  border-radius: 20px;
-  right: 5%;
+  right: 0;
   top: 5%;
   height: 90%;
-  width: 90%;
+  width: 100%;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   flex-flow: row wrap;
@@ -61,4 +60,21 @@ div.overlay {
 
 .anchor-bottom {
   margin-top: auto;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+}
+
+.col-1 {
+    flex-direction: column;
+}
+
+.col-2 {
+    flex-direction: column;
+}
+
+.bottom {
+    flex-shrink: 0;
 }

@@ -1,9 +1,12 @@
+using IEvangelist.PhotoBooth.Configuration;
+using IEvangelist.PhotoBooth.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace IEvangelist.PhotoBooth
 {
@@ -18,6 +21,15 @@ namespace IEvangelist.PhotoBooth
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "IEvangelist Photo Booth", Version = "v1" });
+            });
+            services.AddCors();
+            services.AddTransient<IImageProcessorService, ImageProcessorService>();
+
+            services.Configure<ImageProcessingOptions>(Configuration.GetSection(nameof(ImageProcessingOptions)));
+            services.Configure<ImageCaptureOptions>(Configuration.GetSection(nameof(ImageCaptureOptions)));
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -39,29 +51,41 @@ namespace IEvangelist.PhotoBooth
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseSpaStaticFiles();
+            app.UseHttpsRedirection()
+               .UseStaticFiles()
+               .UseSpaStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
-            });
+            app.UseCors(builder =>
+               {
+                   builder.WithOrigins("http://localhost")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod()
+                          .AllowAnyOrigin()
+                          .AllowCredentials();
+               })
+            .UseMvc(routes =>
+               {
+                   routes.MapRoute(
+                       name: "default",
+                       template: "{controller}/{action=Index}/{id?}");
+               });
 
-            app.UseSpa(spa =>
-            {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
+            app.UseSwagger()
+               .UseSwaggerUI(c =>
+               {
+                   c.SwaggerEndpoint("/swagger/v1/swagger.json", "IEvangelist Photo Booth");
+               })
+               .UseSpa(spa =>
+               {
+                   // To learn more about options for serving an Angular SPA from ASP.NET Core,
+                   // see https://go.microsoft.com/fwlink/?linkid=864501
 
-                spa.Options.SourcePath = "ClientApp";
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
-            });
+                   spa.Options.SourcePath = "ClientApp";                   
+                   if (env.IsDevelopment())
+                   {
+                       spa.UseAngularCliServer(npmScript: "start");
+                   }
+               });
         }
     }
 }

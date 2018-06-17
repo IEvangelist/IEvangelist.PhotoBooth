@@ -1,1 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+/*
+    Cream City Code Colors
+*/
+
+.bold {
+    font-weight: bold;
+}
+
+.big {
+    font-size: 2em;
+    padding: 6px;
+}
+
+.ccc-orange {
+    color: #f15322;
+}
+
+.ccc-cream {
+    color: #ecd290;
+}
+
+.ccc-blue {
+    color: #688b8b;
+}
+
+.ccc-black {
+    color: #010101;
+}
+
+.ccc-bg-orange {
+    background-color: #f15322;
+}
+
+.ccc-bg-cream {
+    background-color: #ecd290;
+}
+
+.ccc-bg-blue {
+    background-color: #688b8b;
+}
+
+.ccc-bg-black {
+    background-color: #010101;
+}
+
+.twitter-blue {
+    color: #1da1f2;
+}
