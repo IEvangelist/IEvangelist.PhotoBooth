@@ -15,16 +15,19 @@ namespace IEvangelist.PhotoBooth.Services
     {
         private const string Base64PngImagePrefix = "data:image/png;base64,";
 
+        private readonly IImageRepository _imageRepository;
         private readonly ImageProcessingOptions _processingOptions;
         private readonly ImageCaptureOptions _captureOptions;
         private readonly ILogger<ImageProcessorService> _logger;
         private readonly IImageEncoder _encoder = new GifEncoder();
 
         public ImageProcessorService(
+            IImageRepository imageRepository,
             IOptions<ImageProcessingOptions> processingOptions,
             IOptions<ImageCaptureOptions> captureOptions,
             ILogger<ImageProcessorService> logger)
         {
+            _imageRepository = imageRepository ?? throw new ArgumentNullException(nameof(imageRepository));
             _processingOptions = processingOptions?.Value ?? throw new ArgumentNullException(nameof(processingOptions));
             _captureOptions = captureOptions?.Value ?? throw new ArgumentNullException(nameof(captureOptions));
             _logger = logger;
@@ -35,35 +38,30 @@ namespace IEvangelist.PhotoBooth.Services
             try
             {
                 var id = Guid.NewGuid().ToString();
-                await Task.Run(() =>
+                var imageBytes =
+                    request.Images
+                            .Select(img => img.Replace(Base64PngImagePrefix, string.Empty))
+                            .Select(Convert.FromBase64String)
+                            .ToArray();
+
+                var firstImage = Image.Load(imageBytes[0]);
+                firstImage.MetaData.RepeatCount = 0;
+
+                for (int i = 1; i < imageBytes.Length; ++ i)
                 {
-                    var imageBytes = 
-                        request.Images
-                               .Select(img => img.Replace(Base64PngImagePrefix, string.Empty))
-                               .Select(Convert.FromBase64String)
-                               .ToArray();
+                    firstImage.Frames.AddFrame(Image.Load(imageBytes[i]).Frames[0]);
+                }
 
-                    var firstImage = Image.Load(imageBytes[0]);
-                    firstImage.MetaData.RepeatCount = 0;
+                // Ensure that all the frames have the same delay
+                foreach (var frame in firstImage.Frames)
+                {
+                    frame.MetaData.FrameDelay = (int)(_processingOptions.FrameDelay * .1);
+                }
 
-                    for (int i = 1; i < imageBytes.Length; ++ i)
-                    {
-                        firstImage.Frames.AddFrame(Image.Load(imageBytes[i]).Frames[0]);
-                    }
+                var fileName = $"./{id}.gif";
+                firstImage.Save(fileName, _encoder);
 
-                    // Ensure that all the frames have the same delay
-                    foreach (var frame in firstImage.Frames)
-                    {
-                        frame.MetaData.FrameDelay = (int)(_processingOptions.FrameDelay * .1);
-                    }
-
-                    // TODO: do not save the images here.
-                    // Put them in blob storage in Azure.
-                    // Later, we will build a page that will load these images 
-                    // on a page with a unique identifier, ideally
-                    // it can be shared with anyone around the world.
-                    firstImage.Save($"./{id}.gif", _encoder);
-                });
+                await _imageRepository.UploadImageAsync(id, fileName);
 
                 return new ImagesPostResponse { Id = id, IsSuccessful = true };
             }
@@ -80,7 +78,9 @@ namespace IEvangelist.PhotoBooth.Services
                    AnimationFrameDelay = _processingOptions.FrameDelay,
                    IntervalBetweenCountDown = _captureOptions.IntervalBetweenCountDown,
                    PhotoCountDownDefault = _captureOptions.PhotoCountDownDefault,
-                   PhotosToTake = _captureOptions.PhotosToTake
+                   PhotosToTake = _captureOptions.PhotosToTake,
+                   ImageHeight = _processingOptions.ImageHeight,
+                   ImageWidth = _processingOptions.ImageWidth
                };
     }
 }

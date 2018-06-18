@@ -21,15 +21,20 @@ namespace IEvangelist.PhotoBooth
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(options =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "IEvangelist Photo Booth", Version = "v1" });
+                options.SwaggerDoc("v1", new Info { Title = "IEvangelist Photo Booth", Version = "v1" });
             });
             services.AddCors();
-            services.AddTransient<IImageProcessorService, ImageProcessorService>();
 
+            // Map services
+            services.AddTransient<IImageProcessorService, ImageProcessorService>();
+            services.AddSingleton<IImageRepository, ImageRepository>();
+
+            // Map appsettings.json to class options
             services.Configure<ImageProcessingOptions>(Configuration.GetSection(nameof(ImageProcessingOptions)));
             services.Configure<ImageCaptureOptions>(Configuration.GetSection(nameof(ImageCaptureOptions)));
+            services.Configure<ImageRepositoryOptions>(Configuration.GetSection(nameof(ImageRepositoryOptions)));
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -38,7 +43,6 @@ namespace IEvangelist.PhotoBooth
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())

@@ -25,5 +25,9 @@ namespace IEvangelist.PhotoBooth.Models
         public int IntervalBetweenCountDown { get; set; }
 
         public int AnimationFrameDelay { get; set; }
+
+        public int ImageHeight { get; set; }
+
+        public int ImageWidth { get; set; }
     }
 }

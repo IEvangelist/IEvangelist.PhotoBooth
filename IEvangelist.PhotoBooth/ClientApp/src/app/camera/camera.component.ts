@@ -1,6 +1,7 @@
 import { Component, Inject, ViewChild, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { WizardState } from '../control-wizard/control-wizard.component';
+import { ImageOptions } from '../models/image-options';
 
 @Component({
     selector: 'camera',
@@ -44,7 +45,7 @@ export class CameraComponent implements AfterViewInit {
         if (this.canvas) {
             const context = this.canvas.getContext('2d');
             if (context) {
-                context.drawImage(this.video, 0, 0, 640, 480);
+                context.drawImage(this.video, 0, 0, this.imageWidth, this.imageHeight);
                 const url = this.canvas.toDataURL('image/png');
                 localStorage.setItem(`${count}.image.png`, url);
             }
@@ -54,6 +55,13 @@ export class CameraComponent implements AfterViewInit {
     public onStateChanged(state: WizardState): void {
         this.isPresentingPhotos = state === WizardState.PresentingPhotos;
         this.isTakingPhoto = state === WizardState.TakingPhoto;
+    }
+
+    public onOptionsReceived(imageOptions: ImageOptions): void {
+        if (imageOptions) {
+            this.imageHeight = imageOptions.imageHeight;
+            this.imageWidth = imageOptions.imageWidth;
+        }
     }
 
     public adjustVideoHeight(event): void {

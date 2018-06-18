@@ -1,6 +1,8 @@
 <div class="overlay" [ngClass]="{ 'hide': isTakingPhoto }">
     <div *ngIf="isIdle">
-        <button class="start-btn" (click)="start()">Start</button>
+        <button class="start-btn" (click)="start()">
+            <i class="glyphicon glyphicon-camera"></i>
+        </button>
     </div>
 
     <div *ngIf="isCountingDown">
@@ -10,10 +12,9 @@
     <div *ngIf="isTakingPhoto">
         <!-- Taking photo... -->
     </div>
-
     <div *ngIf="isPresentingPhotos" class="card">
         <div class="col-1">
-            <img *ngIf="images.length" src="{{ images[animationIndex] }}" width="640" height="480" />
+            <img *ngIf="images.length" src="{{ images[animationIndex] }}" width="{{ imageWidth }}" height="{{ imageHeight }}" />
         </div>
         <div class="col-2 ccc-bg-cream big bold">
             <div class="ccc-blue">
@@ -22,10 +23,12 @@
             <div class="ccc-orange">
                 2018
             </div>
-            <img height="360" src="../../assets/CCC_Logo.png" />            
+            <img height="360" src="../../assets/CCC_Logo.png" />
         </div>
         <div class="bottom">
-            <button (click)="generate()">Send</button>
+            <button (click)="generate()">
+                <i class="glyphicon glyphicon-send"></i>
+            </button>
             <button (click)="reset()">Reset</button>
         </div>
     </div>

@@ -19,6 +19,7 @@ export enum WizardState {
 export class ControlWizardComponent implements OnInit {
     @Output() takePhoto = new EventEmitter<number>();
     @Output() stateChange = new EventEmitter<WizardState>();
+    @Output() optionsReceived = new EventEmitter<ImageOptions>();
 
     public get isIdle(): boolean {
         return this.state === WizardState.Idle;
@@ -51,6 +52,7 @@ export class ControlWizardComponent implements OnInit {
 
     async ngOnInit() {
         this.imageOptions = await this.imageService.getOptions();
+        this.optionsReceived.emit(this.imageOptions);
         this.photoCountDown = this.imageOptions.photoCountDownDefault;
     }
 
@@ -93,10 +95,10 @@ export class ControlWizardComponent implements OnInit {
                             this.changeState(WizardState.TakingPhoto);
                             this.photoCountDown = this.imageOptions.photoCountDownDefault + 1;
                             this.takePhoto.emit(this.photosTaken);
-                            ++this.photosTaken;
+                            ++ this.photosTaken;
                         } else {
                             this.changeState(WizardState.CountingDown);
-                            --this.photoCountDown;
+                            -- this.photoCountDown;
                         }
                     } else {
                         this.stopCountDownTimer();
