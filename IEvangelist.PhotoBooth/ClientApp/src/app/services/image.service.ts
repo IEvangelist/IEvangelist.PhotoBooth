@@ -23,11 +23,20 @@ export class ImageService {
                    .toPromise();
     }
 
-    public generateAnimiation(images: string[]) {
+    public generateAnimiation(phoneNumber: string, images: string[]) {
+        let phone =
+            phoneNumber && phoneNumber.length > 11
+                ? phoneNumber.substring(0, 11)
+                : phoneNumber;
+
+        if (phone && phone.length == 10) {
+            phone = `1{phone}`;
+        }
+
         return this.http
                    .post<Generated>(
                        `${this.apiUrl}api/image/generate`,
-                       JSON.stringify({ images }),
+                       JSON.stringify({ phone, images }),
                        this.httpOptions)
                    .toPromise();
     }

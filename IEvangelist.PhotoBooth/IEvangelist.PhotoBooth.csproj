@@ -23,6 +23,7 @@
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0004" />
     <PackageReference Include="SixLabors.ImageSharp.Web" Version="1.0.0-beta0003" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.5.0" />
+    <PackageReference Include="Twilio" Version="5.13.4" />
     <PackageReference Include="WindowsAzure.Storage" Version="9.2.0" />
   </ItemGroup>
 
@@ -30,6 +31,10 @@
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Content Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\number-pad\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

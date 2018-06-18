@@ -9,12 +9,16 @@ import { CameraComponent } from './camera/camera.component';
 import { ControlWizardComponent } from './control-wizard/control-wizard.component';
 
 import { ImageService } from './services/image.service';
+import { NumberPadComponent } from './number-pad/number-pad.component';
+import { PhoneNumberPipe } from './pipes/phone-number.pipe';
 
 @NgModule({
     declarations: [
         AppComponent,
         CameraComponent,
-        ControlWizardComponent
+        ControlWizardComponent,
+        NumberPadComponent,
+        PhoneNumberPipe
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

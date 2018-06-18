@@ -1,39 +1,79 @@
 <div class="overlay" [ngClass]="{ 'hide': isTakingPhoto }">
-    <div *ngIf="isIdle">
-        <button class="start-btn" (click)="start()">
-            <i class="glyphicon glyphicon-camera"></i>
-        </button>
-    </div>
 
-    <div *ngIf="isCountingDown">
-        <div class="countdown">{{ photoCountDown }}</div>
-    </div>
+    <div class="grid">
+        <header class="grid-header"></header>
 
-    <div *ngIf="isTakingPhoto">
-        <!-- Taking photo... -->
-    </div>
-    <div *ngIf="isPresentingPhotos" class="card">
-        <div class="col-1">
-            <img *ngIf="images.length" src="{{ images[animationIndex] }}" width="{{ imageWidth }}" height="{{ imageHeight }}" />
-        </div>
-        <div class="col-2 ccc-bg-cream big bold">
-            <div class="ccc-blue">
-                #DeveloperCommunity
-            </div>
-            <div class="ccc-orange">
-                2018
-            </div>
-            <img height="360" src="../../assets/CCC_Logo.png" />
-        </div>
-        <div class="bottom">
-            <button (click)="generate()">
-                <i class="glyphicon glyphicon-send"></i>
+        <div class="grid-left">
+            <button *ngIf="isPresentingPhotos" class="ccc-button" (click)="reset()">
+                <i class="glyphicon glyphicon-share-alt" style="transform: scale(-1, 1);"></i> Retake
             </button>
-            <button (click)="reset()">Reset</button>
+
+            <button *ngIf="isTextingLink" class="ccc-button" (click)="reset()" [disabled]="isSending">
+                <i class="glyphicon glyphicon-ok"></i> Done
+            </button>
         </div>
+
+        <div class="grid-content">
+
+            <div *ngIf="isIdle">
+                <button class="start-btn" (click)="start()">
+                    <i class="glyphicon glyphicon-camera"></i>
+                </button>
+            </div>
+
+            <div *ngIf="isCountingDown">
+                <div class="countdown">{{ photoCountDown }}</div>
+            </div>
+
+            <div *ngIf="isTakingPhoto">
+                <!-- Taking photo... -->
+            </div>
+
+            <div *ngIf="isPresentingPhotos" class="card">
+
+                <div class="col-1">
+                    <img *ngIf="images.length" src="{{ images[animationIndex] }}" width="640" height="480" />
+                </div>
+                <div class="col-2 ccc-bg-cream big bold">
+                    <div class="ccc-orange">
+                        2018
+                    </div>
+                    <img height="360" src="../../assets/CCC_Logo.png" />
+                    <div class="twitter-blue">
+                        #DeveloperCommunity
+                    </div>
+                </div>
+
+            </div>
+
+            <div *ngIf="isTextingLink" class="card">
+                <div class="col-1 w-100">
+                    <number-pad (numberChanged)="onPhoneNumberChanged($event)"></number-pad>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-right">
+            <button *ngIf="isPresentingPhotos" class="ccc-button" (click)="send()">
+                <i class="glyphicon glyphicon-send"></i> Send
+            </button>
+
+            <button *ngIf="isTextingLink" class="ccc-button" (click)="generate()" [disabled]="isSending">
+                <div *ngIf="isSending">
+                    <i class="glyphicon glyphicon-repeat fast-spinner"></i> Sending
+                </div>
+                <div *ngIf="!isSending">
+                    <i class="glyphicon glyphicon-send"></i> Send
+                </div>
+            </button>
+        </div>
+
+        <footer class="grid-footer">
+            <img *ngIf="!isTextingLink" src="../../assets/horizontal-logo.png" height="250" />
+            <div *ngIf="isTextingLink" class="ccc-cream really-big">
+                {{ phoneNumber | phone }}
+            </div>
+        </footer>
     </div>
 
-    <div class="anchor-bottom">
-        <!--<img src="../../assets/horizontal-logo.png" />-->
-    </div>
 </div>

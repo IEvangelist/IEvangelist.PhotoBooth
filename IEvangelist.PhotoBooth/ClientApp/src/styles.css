@@ -11,6 +11,10 @@
     padding: 6px;
 }
 
+.really-big {
+    font-size: 4em;
+}
+
 .ccc-orange {
     color: #f15322;
 }
@@ -45,4 +49,50 @@
 
 .twitter-blue {
     color: #1da1f2;
+}
+
+.ccc-button {
+    font-size: 60px;
+    padding: 32px 64px;
+    border-radius: 12px;
+    border-width: 0px;
+    color: whitesmoke;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.glyphicon.fast-spinner {
+    -webkit-animation: glyphicon-spin-r 1s infinite linear;
+    animation: glyphicon-spin-r 1s infinite linear;
+}
+
+@-webkit-keyframes glyphicon-spin-r {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes glyphicon-spin-r {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
 }

@@ -1,4 +1,5 @@
-﻿using IEvangelist.PhotoBooth.Configuration;
+﻿using Centare.Extensions;
+using IEvangelist.PhotoBooth.Configuration;
 using IEvangelist.PhotoBooth.Threading;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -46,7 +47,7 @@ namespace IEvangelist.PhotoBooth.Services
                     }
                     catch (Exception ex)
                     {
-                        _logger.LogError(ex.Message, ex);
+                        ex.TryLogException(_logger);
                         throw ex;
                     }
                 }

@@ -30,11 +30,13 @@ namespace IEvangelist.PhotoBooth
             // Map services
             services.AddTransient<IImageProcessorService, ImageProcessorService>();
             services.AddSingleton<IImageRepository, ImageRepository>();
+            services.AddSingleton<ITextMessagingService, TextMessagingService>();
 
             // Map appsettings.json to class options
             services.Configure<ImageProcessingOptions>(Configuration.GetSection(nameof(ImageProcessingOptions)));
             services.Configure<ImageCaptureOptions>(Configuration.GetSection(nameof(ImageCaptureOptions)));
             services.Configure<ImageRepositoryOptions>(Configuration.GetSection(nameof(ImageRepositoryOptions)));
+            services.Configure<TwilioOptions>(Configuration.GetSection(nameof(TwilioOptions)));
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

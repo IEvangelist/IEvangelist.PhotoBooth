@@ -5,7 +5,7 @@ namespace IEvangelist.PhotoBooth.Services
 {
     public interface IImageProcessorService
     {
-        Task<ImagesPostResponse> ProcessImagesAsync(ImagesPostRequest request);
+        Task<ImagesPostResponse> ProcessImagesAsync(string baseUrl, ImagesPostRequest request);
 
         ImageOptionsResponse GetImageOptions();
     }

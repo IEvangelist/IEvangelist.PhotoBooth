@@ -4,6 +4,8 @@ namespace IEvangelist.PhotoBooth.Models
 {
     public class ImagesPostRequest
     {
+        public string Phone { get; set; }
+
         public List<string> Images { get; set; }
     }
 

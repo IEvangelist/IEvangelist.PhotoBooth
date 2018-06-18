@@ -8,7 +8,8 @@ export enum WizardState {
     CountingDown,
     TakingPhoto,
     PresentingPhotos,
-    SendingPhoto
+    SendingPhoto,
+    TextingLink
 };
 
 @Component({
@@ -37,10 +38,17 @@ export class ControlWizardComponent implements OnInit {
         return this.state === WizardState.PresentingPhotos;
     }
 
+    public get isTextingLink(): boolean {
+        return this.state === WizardState.TextingLink;
+    }
+
+    public isSending = false;
+
     public state: WizardState = WizardState.Idle;
     public photoCountDown: number;
     public images: string[] = [];
     public animationIndex: number = 0;
+    public phoneNumber: string = "";
 
     private countDownTimer: NodeJS.Timer;
     private animationTimer: NodeJS.Timer;
@@ -74,11 +82,21 @@ export class ControlWizardComponent implements OnInit {
     }
 
     public async generate() {
-        if (this.images) {
+        if (this.phoneNumber && this.images && this.images.length) {
+            this.isSending = true;
             const id =
                 await this.imageService
-                          .generateAnimiation(this.images);
+                          .generateAnimiation(this.phoneNumber, this.images)
+                          .then(() => this.isSending = false);
         }
+    }
+
+    public send(): void {
+        this.changeState(WizardState.TextingLink);
+    }
+
+    public onPhoneNumberChanged(number: string): void {
+        this.phoneNumber = number;
     }
 
     private resetCountDownTimer(): void {

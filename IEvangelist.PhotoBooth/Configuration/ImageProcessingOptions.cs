@@ -9,5 +9,7 @@
         public int RepeatCount { get; set; }
 
         public int FrameDelay { get; set; }
+
+        public string Copyright { get; set; }
     }
 }
