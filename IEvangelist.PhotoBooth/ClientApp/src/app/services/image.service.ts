@@ -30,7 +30,7 @@ export class ImageService {
                 : phoneNumber;
 
         if (phone && phone.length == 10) {
-            phone = `1{phone}`;
+            phone = `1${phone}`;
         }
 
         return this.http

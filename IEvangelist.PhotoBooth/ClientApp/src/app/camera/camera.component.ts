@@ -16,6 +16,7 @@ export class CameraComponent implements AfterViewInit {
     private canvas: HTMLCanvasElement;
 
     public isPresentingPhotos: boolean = false;
+    public isTextingLink: boolean = false;
     public isTakingPhoto: boolean = false;
     public imageWidth = 640;
     public imageHeight = 480;
@@ -54,6 +55,7 @@ export class CameraComponent implements AfterViewInit {
 
     public onStateChanged(state: WizardState): void {
         this.isPresentingPhotos = state === WizardState.PresentingPhotos;
+        this.isTextingLink = state === WizardState.TextingLink;
         this.isTakingPhoto = state === WizardState.TakingPhoto;
     }
 

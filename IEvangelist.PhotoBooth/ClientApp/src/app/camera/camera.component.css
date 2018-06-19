@@ -1,13 +1,11 @@
 :host {
-    overflow: hidden !important;
+    overflow: hidden !important;    
 }
 
 .video-wrapper {
     width: 100%;
     height: 100%;
     overflow: hidden !important;
-    background: rgb(0,0,0);
-    background: #688b8b;
 }
 
 video {
@@ -15,6 +13,8 @@ video {
     max-height: 100%;
     width: 100% !important;
     overflow: hidden !important;
+    border-left: 3px solid #ecd290;
+    border-right: 3px solid #ecd290;
 }
 
 .camera-flash {

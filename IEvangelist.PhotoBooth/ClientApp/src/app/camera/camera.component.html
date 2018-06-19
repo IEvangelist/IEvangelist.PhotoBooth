@@ -1,6 +1,6 @@
 <div class="video-wrapper" [ngClass]="{ 'camera-flash': isTakingPhoto }">
   <control-wizard (takePhoto)="onTakePhoto($event)" (stateChange)="onStateChanged($event)" (optionsReceived)="onOptionsReceived($event)"></control-wizard>
   <video (window:resize)="adjustVideoHeight($event)"
-         #video autoplay width="640" height="480" [ngClass]="{ 'hide': isPresentingPhotos }"></video>
+         #video autoplay width="640" height="480" [ngClass]="{ 'hide': isPresentingPhotos || isTextingLink }"></video>
   <canvas #canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
 </div>

@@ -5,11 +5,9 @@
 .overlay {
     z-index: 777;
     position: absolute;
-    right: 0;
-    top: 5%;
-    height: 90%;
+    height: 100%;
     width: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.3);
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
@@ -31,26 +29,7 @@ div.overlay {
     border-radius: 12px;
     border-width: 0px;
     color: whitesmoke;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-    .start-btn:hover {
-        color: white;
-        transition-duration: 0.7s;
-        text-shadow: 0 0 60px white;
-        -webkit-box-shadow: 0px 0px 40px 0px rgba(255,255,255,.3);
-        -moz-box-shadow: 0px 0px 40px 0px rgba(255,255,255,.3);
-        box-shadow: 0px 0px 40px 0px rgba(255,255,255,.3);
-        background-color: rgba(0, 0, 0, 0.7);
-    }
-
-.reset-btn {
-    font-size: 60px;
-    padding: 32px 64px;
-    border-radius: 12px;
-    border-width: 0px;
-    color: whitesmoke;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #f15322;
 }
 
 .countdown {
@@ -59,13 +38,25 @@ div.overlay {
     font-size: 40em;
 }
 
+.countdown[data-countdown*='3'] {
+    color: #ecd290;
+}
+
+.countdown[data-countdown*='2'] {
+    color: #f15322;
+}
+
+.countdown[data-countdown*='1'] {
+    color: #688b8b;
+}
+
 .anchor-bottom {
     margin-top: auto;
 }
 
 .card {
     display: flex;
-    flex-direction: row;
+    flex-direction: row;    
 }
 
 .col-1 {
@@ -74,6 +65,7 @@ div.overlay {
 
 .col-2 {
     flex-direction: column;
+    width: 100%;
 }
 
 .bottom {
@@ -110,9 +102,12 @@ div.overlay {
 
 .grid-footer {
     grid-area: footer;
-    align-self: self-end;
 }
 
 .w-100 {
     width: 100%;
+}
+
+.ccc-border {
+    border: 5px solid #1a1915;
 }

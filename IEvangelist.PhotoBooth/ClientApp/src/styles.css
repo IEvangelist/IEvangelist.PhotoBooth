@@ -2,6 +2,11 @@
     Cream City Code Colors
 */
 
+body {
+    background-size: cover;
+    background-image: url("assets/ccc-mark.png");
+}
+
 .bold {
     font-weight: bold;
 }
@@ -13,6 +18,11 @@
 
 .really-big {
     font-size: 4em;
+}
+
+.black-glow {
+    font-weight: 700;
+    text-shadow: 0 0 80px #010101;
 }
 
 .ccc-orange {
@@ -57,7 +67,6 @@
     border-radius: 12px;
     border-width: 0px;
     color: whitesmoke;
-    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .left {

@@ -4,12 +4,12 @@
         <header class="grid-header"></header>
 
         <div class="grid-left">
-            <button *ngIf="isPresentingPhotos" class="ccc-button" (click)="reset()">
-                <i class="glyphicon glyphicon-share-alt" style="transform: scale(-1, 1);"></i> Retake
+            <button *ngIf="isPresentingPhotos" class="ccc-button ccc-bg-blue" (click)="reset()">
+                <i class="glyphicon glyphicon-share-alt" style="transform: scale(-1, 1);"></i><br /> Retake
             </button>
 
-            <button *ngIf="isTextingLink" class="ccc-button" (click)="reset()" [disabled]="isSending">
-                <i class="glyphicon glyphicon-ok"></i> Done
+            <button *ngIf="isTextingLink" class="ccc-button ccc-bg-blue" (click)="reset()" [disabled]="isSending">
+                <i class="glyphicon glyphicon-ok"></i><br /> Done
             </button>
         </div>
 
@@ -22,14 +22,14 @@
             </div>
 
             <div *ngIf="isCountingDown">
-                <div class="countdown">{{ photoCountDown }}</div>
+                <div class="countdown black-glow" [attr.data-countdown]="photoCountDown">{{ photoCountDown }}</div>
             </div>
 
             <div *ngIf="isTakingPhoto">
                 <!-- Taking photo... -->
             </div>
 
-            <div *ngIf="isPresentingPhotos" class="card">
+            <div *ngIf="isPresentingPhotos" class="card ccc-border">
 
                 <div class="col-1">
                     <img *ngIf="images.length" src="{{ images[animationIndex] }}" width="640" height="480" />
@@ -38,7 +38,7 @@
                     <div class="ccc-orange">
                         2018
                     </div>
-                    <img height="360" src="../../assets/CCC_Logo.png" />
+                    <img height="360" src="../../assets/ccc-logo.png" />
                     <div class="twitter-blue">
                         #DeveloperCommunity
                     </div>
@@ -54,23 +54,23 @@
         </div>
 
         <div class="grid-right">
-            <button *ngIf="isPresentingPhotos" class="ccc-button" (click)="send()">
-                <i class="glyphicon glyphicon-send"></i> Send
+            <button *ngIf="isPresentingPhotos" class="ccc-button ccc-bg-orange" (click)="send()">
+                <i class="glyphicon glyphicon-send"></i><br /> Send
             </button>
 
-            <button *ngIf="isTextingLink" class="ccc-button" (click)="generate()" [disabled]="isSending">
+            <button *ngIf="isTextingLink" class="ccc-button ccc-bg-orange" (click)="generate()" [disabled]="isSending">
                 <div *ngIf="isSending">
-                    <i class="glyphicon glyphicon-repeat fast-spinner"></i> Sending
+                    <i class="glyphicon glyphicon-repeat fast-spinner"></i><br/> Sending
                 </div>
                 <div *ngIf="!isSending">
-                    <i class="glyphicon glyphicon-send"></i> Send
+                    <i class="glyphicon glyphicon-send"></i><br /> Send
                 </div>
             </button>
         </div>
 
         <footer class="grid-footer">
-            <img *ngIf="!isTextingLink" src="../../assets/horizontal-logo.png" height="250" />
-            <div *ngIf="isTextingLink" class="ccc-cream really-big">
+            <img *ngIf="isIdle" src="../../assets/ccc-horizontal-logo.png" height="250" />
+            <div *ngIf="isTextingLink" class="ccc-cream really-big black-glow">
                 {{ phoneNumber | phone }}
             </div>
         </footer>

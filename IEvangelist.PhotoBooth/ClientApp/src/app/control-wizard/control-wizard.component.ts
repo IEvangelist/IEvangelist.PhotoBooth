@@ -48,7 +48,7 @@ export class ControlWizardComponent implements OnInit {
     public photoCountDown: number;
     public images: string[] = [];
     public animationIndex: number = 0;
-    public phoneNumber: string = "";
+    public phoneNumber: string = "(555) 123-4567";
 
     private countDownTimer: NodeJS.Timer;
     private animationTimer: NodeJS.Timer;
@@ -65,6 +65,7 @@ export class ControlWizardComponent implements OnInit {
     }
 
     private changeState(state: WizardState): void {
+        console.log(`State: ${WizardState[state]}`);
         this.stateChange.emit(this.state = state);
     }
 
