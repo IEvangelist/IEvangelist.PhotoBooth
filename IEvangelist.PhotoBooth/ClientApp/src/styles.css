@@ -11,6 +11,10 @@ body {
     font-weight: bold;
 }
 
+.really-bold {
+    font-weight: 700;
+}
+
 .big {
     font-size: 2em;
     padding: 6px;
@@ -21,8 +25,7 @@ body {
 }
 
 .black-glow {
-    font-weight: 700;
-    text-shadow: 0 0 80px #010101;
+    text-shadow: 0 0 80px #010101;    
 }
 
 .ccc-orange {
@@ -67,6 +70,14 @@ body {
     border-radius: 12px;
     border-width: 0px;
     color: whitesmoke;
+    box-shadow: 0 0 80px #010101;
+    text-shadow: 0 0 20px #010101;
+}
+
+.ccc-button.disabled,
+.ccc-button:disabled {
+    color: #aeaeae;
+    opacity: .7;
 }
 
 .left {

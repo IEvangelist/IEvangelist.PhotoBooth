@@ -1,7 +1,8 @@
 div.keyboard {
-    width: 400px;
+    width: 460px;
     height: 150px;
     margin: 0 auto;
+    margin-left: 17%;
 }
 
 ol.keys {
@@ -14,7 +15,7 @@ ol.keys li {
     text-align: center;
     height: 4em;
     float: left;
-    font-size: 2.2em;
+    font-size: 2.5em;
     padding-top: .7em;
     border: 1px solid rgb(100,100,100);
     color: white;

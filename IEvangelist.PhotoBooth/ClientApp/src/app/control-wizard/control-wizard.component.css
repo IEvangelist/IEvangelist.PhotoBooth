@@ -108,6 +108,19 @@ div.overlay {
     width: 100%;
 }
 
+.fs-38 {
+    font-size: 38px;
+}
+
 .ccc-border {
     border: 5px solid #1a1915;
+    box-shadow: 0 0 80px #010101;
+}
+
+.phone-number {
+    color: white;
+    font-weight: 700;
+    font-size: 4em;
+    background-color: rgba(0,0,0,.5);
+    box-shadow: 0 0 80px #010101;
 }

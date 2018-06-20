@@ -16,8 +16,8 @@
         <div class="grid-content">
 
             <div *ngIf="isIdle">
-                <button class="start-btn" (click)="start()">
-                    <i class="glyphicon glyphicon-camera"></i>
+                <button class="ccc-button ccc-bg-orange" (click)="start()">
+                    <i class="glyphicon glyphicon-camera"></i><br/> Start
                 </button>
             </div>
 
@@ -29,13 +29,13 @@
                 <!-- Taking photo... -->
             </div>
 
-            <div *ngIf="isPresentingPhotos" class="card ccc-border">
+            <div *ngIf="isPresentingPhotos" class="card ccc-border black-glow">
 
                 <div class="col-1">
                     <img *ngIf="images.length" src="{{ images[animationIndex] }}" width="640" height="480" />
                 </div>
                 <div class="col-2 ccc-bg-cream big bold">
-                    <div class="ccc-orange">
+                    <div class="ccc-orange fs-38">
                         2018
                     </div>
                     <img height="360" src="../../assets/ccc-logo.png" />
@@ -69,8 +69,8 @@
         </div>
 
         <footer class="grid-footer">
-            <img *ngIf="isIdle" src="../../assets/ccc-horizontal-logo.png" height="250" />
-            <div *ngIf="isTextingLink" class="ccc-cream really-big black-glow">
+            <img *ngIf="isIdle" class="black-glow" src="../../assets/ccc-horizontal-logo.png" height="250" />
+            <div *ngIf="isTextingLink" class="phone-number black-glow">
                 {{ phoneNumber | phone }}
             </div>
         </footer>

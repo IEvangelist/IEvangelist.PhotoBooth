@@ -12,13 +12,18 @@ export enum WizardState {
     TextingLink
 };
 
+export interface PhotoDetails {
+    photoCount: number;
+    interval: number;
+};
+
 @Component({
     selector: 'control-wizard',
     templateUrl: './control-wizard.component.html',
     styleUrls: ['./control-wizard.component.css']
 })
 export class ControlWizardComponent implements OnInit {
-    @Output() takePhoto = new EventEmitter<number>();
+    @Output() takePhoto = new EventEmitter<PhotoDetails>();
     @Output() stateChange = new EventEmitter<WizardState>();
     @Output() optionsReceived = new EventEmitter<ImageOptions>();
 
@@ -48,7 +53,7 @@ export class ControlWizardComponent implements OnInit {
     public photoCountDown: number;
     public images: string[] = [];
     public animationIndex: number = 0;
-    public phoneNumber: string = "(555) 123-4567";
+    public phoneNumber: string = "(414) 000-0000";
 
     private countDownTimer: NodeJS.Timer;
     private animationTimer: NodeJS.Timer;
@@ -65,7 +70,11 @@ export class ControlWizardComponent implements OnInit {
     }
 
     private changeState(state: WizardState): void {
-        console.log(`State: ${WizardState[state]}`);
+        const count =
+            state === WizardState.CountingDown
+                ? this.photoCountDown.toString()
+                : "";
+        console.log(`State: ${WizardState[state]} {count}`);
         this.stateChange.emit(this.state = state);
     }
 
@@ -108,12 +117,16 @@ export class ControlWizardComponent implements OnInit {
     private startCountDownTimer(): void {
         this.countDownTimer =
             setInterval(
-                () => {
+                () => {                    
                     if (this.photosTaken < this.imageOptions.photosToTake) {
                         if (this.photoCountDown === 1) {
-                            this.changeState(WizardState.TakingPhoto);
                             this.photoCountDown = this.imageOptions.photoCountDownDefault + 1;
-                            this.takePhoto.emit(this.photosTaken);
+                            this.changeState(WizardState.TakingPhoto);
+                            const details = {
+                                photoCount: this.photosTaken,
+                                interval: this.imageOptions.intervalBetweenCountDown
+                            };
+                            this.takePhoto.emit(details);
                             ++ this.photosTaken;
                         } else {
                             this.changeState(WizardState.CountingDown);

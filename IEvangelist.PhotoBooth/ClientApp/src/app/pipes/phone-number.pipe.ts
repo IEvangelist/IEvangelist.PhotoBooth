@@ -35,6 +35,10 @@ export class PhoneNumberPipe implements PipeTransform {
                 return tel;
         }
 
+        if (country === "1") {
+            country = "";
+        }
+
         number = number.slice(0, 3) + '-' + number.slice(3);
 
         return (country + " (" + city + ") " + number).trim();
