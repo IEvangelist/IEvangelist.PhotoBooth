@@ -70,11 +70,7 @@ export class ControlWizardComponent implements OnInit {
     }
 
     private changeState(state: WizardState): void {
-        const count =
-            state === WizardState.CountingDown
-                ? this.photoCountDown.toString()
-                : "";
-        console.log(`State: ${WizardState[state]} {count}`);
+        console.log(`State: ${WizardState[state]}`);
         this.stateChange.emit(this.state = state);
     }
 
