@@ -1,19 +1,26 @@
+<ccc-audio #type [src]="'http://www.soundjay.com/communication/typewriter-key-1.wav'">
+</ccc-audio>
+<ccc-audio #backspace [src]="'https://www.soundjay.com/button/sounds/button-21.mp3'">
+</ccc-audio>
+<ccc-audio #clear [src]="'https://www.soundjay.com/button/sounds/button-49.mp3'">
+</ccc-audio>
+
 <div class="keyboard">
     <ol class="keys">
-        <li (click)="onType('1')">1</li>
-        <li (click)="onType('2')">2</li>
-        <li (click)="onType('3')">3</li>
-        <li (click)="onType('4')">4</li>
-        <li (click)="onType('5')">5</li>
-        <li (click)="onType('6')">6</li>
-        <li (click)="onType('7')">7</li>
-        <li (click)="onType('8')">8</li>
-        <li (click)="onType('9')">9</li>
-        <li (click)="onDelete()">
+        <li (click)="onType('1', type)">1</li>
+        <li (click)="onType('2', type)">2</li>
+        <li (click)="onType('3', type)">3</li>
+        <li (click)="onType('4', type)">4</li>
+        <li (click)="onType('5', type)">5</li>
+        <li (click)="onType('6', type)">6</li>
+        <li (click)="onType('7', type)">7</li>
+        <li (click)="onType('8', type)">8</li>
+        <li (click)="onType('9', type)">9</li>
+        <li (click)="onDelete(backspace)">
             <i class="glyphicon glyphicon-circle-arrow-left"></i>
         </li>
-        <li (click)="onType('0')">0</li>
-        <li (click)="onClear()">
+        <li (click)="onType('0', type)">0</li>
+        <li (click)="onClear(clear)">
             <i class="glyphicon glyphicon-remove-sign"></i>
         </li>
     </ol>

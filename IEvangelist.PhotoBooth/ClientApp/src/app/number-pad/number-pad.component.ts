@@ -1,25 +1,30 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { AudioComponent } from '../audio/audio.component';
 
 @Component({
     selector: 'number-pad',
     templateUrl: './number-pad.component.html',
     styleUrls: ['./number-pad.component.css']
 })
-export class NumberPadComponent implements OnInit {
+export class NumberPadComponent {
     @Output() numberChanged = new EventEmitter<string>();
 
+    private typeSound: HTMLAudioElement;
+    private backspaceSound: HTMLAudioElement;
+    private clearSound: HTMLAudioElement;
     private userNumber: string = "";
 
     constructor() { }
 
-    ngOnInit() { }
-
-    public onType(char: string): void {
+    public async onType(char: string, sound: AudioComponent) {
         this.userNumber += char;
         this.onNumberChanged();
+        if (sound) {
+            await sound.play();
+        }
     }
 
-    public onDelete(): void {
+    public async onDelete(sound: AudioComponent) {
         if (this.userNumber && this.userNumber.length) {
             this.userNumber =
                 this.userNumber.length > 1
@@ -27,11 +32,17 @@ export class NumberPadComponent implements OnInit {
                     : "";
             this.onNumberChanged();
         }
+        if (sound) {
+            await sound.play();
+        }
     }
 
-    public onClear(): void {
+    public async onClear(sound: AudioComponent) {
         this.userNumber = "";
         this.onNumberChanged();
+        if (sound) {
+            await sound.play();
+        }
     }
 
     private onNumberChanged(): void {

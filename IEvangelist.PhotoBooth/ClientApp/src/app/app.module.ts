@@ -11,6 +11,7 @@ import { ControlWizardComponent } from './control-wizard/control-wizard.componen
 import { ImageService } from './services/image.service';
 import { NumberPadComponent } from './number-pad/number-pad.component';
 import { PhoneNumberPipe } from './pipes/phone-number.pipe';
+import { AudioComponent } from './audio/audio.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { PhoneNumberPipe } from './pipes/phone-number.pipe';
         CameraComponent,
         ControlWizardComponent,
         NumberPadComponent,
-        PhoneNumberPipe
+        PhoneNumberPipe,
+        AudioComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

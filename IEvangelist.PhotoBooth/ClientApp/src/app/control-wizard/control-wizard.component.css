@@ -121,6 +121,26 @@ div.overlay {
     color: white;
     font-weight: 700;
     font-size: 4em;
+    min-height: 80px;
     background-color: rgba(0,0,0,.5);
     box-shadow: 0 0 80px #010101;
+}
+
+.ccc-bg-morph {
+    -webkit-animation: bg-morph 9s infinite linear;
+    animation: bg-morph 9s infinite linear;
+}
+
+@-webkit-keyframes bg-morph {
+    0% { background-color: #ecd290; }
+    33% { background-color: #f15322; }
+    66% { background-color: #688b8b; }
+    100% { background-color: #ecd290; }
+}
+
+@keyframes bg-morph {
+    0% { background-color: #ecd290; }
+    33% { background-color: #f15322; }
+    66% { background-color: #688b8b; }
+    100% { background-color: #ecd290; }
 }

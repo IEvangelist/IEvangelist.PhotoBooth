@@ -1,14 +1,18 @@
 <div class="overlay" [ngClass]="{ 'hide': isTakingPhoto }">
 
+    <ccc-audio #resetSound [src]="'https://www.soundjay.com/button/sounds/beep-027.mp3'"></ccc-audio>
+    <ccc-audio #startSound [src]="'https://www.soundjay.com/switch/sounds/switch-19.mp3'"></ccc-audio>
+    <ccc-audio #sendSound [src]="'https://www.soundjay.com/button/sounds/button-43.mp3'"></ccc-audio>
+
     <div class="grid">
         <header class="grid-header"></header>
 
         <div class="grid-left">
-            <button *ngIf="isPresentingPhotos" class="ccc-button ccc-bg-blue" (click)="reset()">
+            <button *ngIf="isPresentingPhotos" class="ccc-button ccc-bg-blue" (click)="reset(resetSound)">
                 <i class="glyphicon glyphicon-share-alt" style="transform: scale(-1, 1);"></i><br /> Retake
             </button>
 
-            <button *ngIf="isTextingLink" class="ccc-button ccc-bg-blue" (click)="reset()" [disabled]="isSending">
+            <button *ngIf="isTextingLink" class="ccc-button ccc-bg-blue" (click)="reset(resetSound)" [disabled]="isSending">
                 <i class="glyphicon glyphicon-ok"></i><br /> Done
             </button>
         </div>
@@ -16,8 +20,8 @@
         <div class="grid-content">
 
             <div *ngIf="isIdle">
-                <button class="ccc-button ccc-bg-orange" (click)="start()">
-                    <i class="glyphicon glyphicon-camera"></i><br/> Start
+                <button class="ccc-button ccc-bg-morph" (click)="start(startSound)">
+                    <i class="glyphicon glyphicon-camera"></i><br /> Start
                 </button>
             </div>
 
@@ -26,7 +30,9 @@
             </div>
 
             <div *ngIf="isTakingPhoto">
-                <!-- Taking photo... -->
+                <ccc-audio [src]="'https://www.soundjay.com/mechanical/sounds/camera-shutter-click-07.mp3'"
+                           [autoplay]="true">
+                </ccc-audio>
             </div>
 
             <div *ngIf="isPresentingPhotos" class="card ccc-border black-glow">
@@ -34,12 +40,12 @@
                 <div class="col-1">
                     <img *ngIf="images.length" src="{{ images[animationIndex] }}" width="640" height="480" />
                 </div>
-                <div class="col-2 ccc-bg-cream big bold">
-                    <div class="ccc-orange fs-38">
+                <div class="col-2 ccc-bg-cream big bold black-inset">
+                    <div class="ccc-orange fs-38 black-glow">
                         2018
                     </div>
-                    <img height="360" src="../../assets/ccc-logo.png" />
-                    <div class="twitter-blue">
+                    <img height="360" class="black-glow" src="../../assets/ccc-logo.png" />
+                    <div class="twitter-blue black-glow">
                         #DeveloperCommunity
                     </div>
                 </div>
@@ -54,13 +60,13 @@
         </div>
 
         <div class="grid-right">
-            <button *ngIf="isPresentingPhotos" class="ccc-button ccc-bg-orange" (click)="send()">
+            <button *ngIf="isPresentingPhotos" class="ccc-button ccc-bg-orange" (click)="send(sendSound)">
                 <i class="glyphicon glyphicon-send"></i><br /> Send
             </button>
 
-            <button *ngIf="isTextingLink" class="ccc-button ccc-bg-orange" (click)="generate()" [disabled]="isSending">
+            <button *ngIf="isTextingLink" class="ccc-button ccc-bg-orange" (click)="generate(sendSound)" [disabled]="isSending">
                 <div *ngIf="isSending">
-                    <i class="glyphicon glyphicon-repeat fast-spinner"></i><br/> Sending
+                    <i class="glyphicon glyphicon-repeat fast-spinner"></i><br /> Sending
                 </div>
                 <div *ngIf="!isSending">
                     <i class="glyphicon glyphicon-send"></i><br /> Send

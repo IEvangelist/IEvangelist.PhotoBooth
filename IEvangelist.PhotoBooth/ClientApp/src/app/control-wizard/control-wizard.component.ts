@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { clearInterval, setInterval } from 'timers';
 import { ImageService } from '../services/image.service';
 import { ImageOptions } from '../models/image-options';
+import { AudioComponent } from '../audio/audio.component';
 
 export enum WizardState {
     Idle,
@@ -74,12 +75,18 @@ export class ControlWizardComponent implements OnInit {
         this.stateChange.emit(this.state = state);
     }
 
-    public start(): void {
+    public async start(sound: AudioComponent) {
+        if (sound) {
+            await sound.play();
+        }
         this.changeState(WizardState.CountingDown);
         this.resetCountDownTimer();
     }
 
-    public reset(): void {
+    public async reset(sound: AudioComponent) {
+        if (sound) {
+            await sound.play();
+        }
         this.changeState(WizardState.Idle);
         this.photosTaken = 0;
         this.photoCountDown = this.imageOptions.photoCountDownDefault;
@@ -87,7 +94,10 @@ export class ControlWizardComponent implements OnInit {
         this.stopAnimationTimer();
     }
 
-    public async generate() {
+    public async generate(sound: AudioComponent) {
+        if (sound) {
+            await sound.play();
+        }
         if (this.phoneNumber && this.images && this.images.length) {
             this.isSending = true;
             const id =
@@ -97,7 +107,10 @@ export class ControlWizardComponent implements OnInit {
         }
     }
 
-    public send(): void {
+    public async send(sound: AudioComponent) {
+        if (sound) {
+            await sound.play();
+        }
         this.changeState(WizardState.TextingLink);
     }
 
