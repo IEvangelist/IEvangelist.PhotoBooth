@@ -1,8 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { ImageOptions } from '../models/image-options';
 import { Generated } from '../models/generated';
-import { HttpHeaders } from '@angular/common/http';
+import { ShareUrl } from '../models/share-url';
 
 @Injectable()
 export class ImageService {
@@ -20,6 +21,12 @@ export class ImageService {
     public getOptions(): Promise<ImageOptions> {
         return this.http
                    .get<ImageOptions>(`${this.apiUrl}api/image/options`)
+                   .toPromise();
+    }
+
+    public get(id: string): Promise<ShareUrl> {
+        return this.http
+                   .get<ShareUrl>(`${this.apiUrl}api/image/${id}`)
                    .toPromise();
     }
 

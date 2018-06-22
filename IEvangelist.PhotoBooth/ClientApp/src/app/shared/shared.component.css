@@ -1,0 +1,13 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: 200px;
+    grid-template-areas: ". a a ." ". a a .";
+}
+
+.center {
+    grid-area: a;
+    align-self: center;
+    justify-self: center;
+}

@@ -27,12 +27,8 @@ export class CameraComponent implements AfterViewInit {
     ngAfterViewInit(): void {
         if (this.videoElement && this.videoElement.nativeElement) {
             this.video = this.videoElement.nativeElement as HTMLVideoElement;
-            if (this.video
-                && navigator.mediaDevices
-                && navigator.mediaDevices.getUserMedia) {
-                navigator
-                    .mediaDevices
-                    .getUserMedia({ video: true })
+            if (this.video) {
+                this.getMediaStreamPromise({ video: true })
                     .then((stream: MediaStream) => this.video.srcObject = stream);
 
                 this.video.height = window.innerHeight;
@@ -41,6 +37,19 @@ export class CameraComponent implements AfterViewInit {
         if (this.canvasElement && this.canvasElement.nativeElement) {
             this.canvas = this.canvasElement.nativeElement as HTMLCanvasElement;
         }
+    }
+
+    private getMediaStreamPromise(constraints: MediaStreamConstraints): Promise<MediaStream> {
+        if (navigator.mediaDevices.getUserMedia) {
+            return navigator.mediaDevices.getUserMedia(constraints);
+        }
+
+        let getMediaStream = ((
+                navigator['webkitGetUserMedia'] ||
+                navigator['mozGetUserMedia']) as (c: MediaStreamConstraints) => Promise<MediaStream>
+            ).bind(navigator);
+
+        return getMediaStream(constraints);
     }
 
     public onTakePhoto(details: PhotoDetails): void {

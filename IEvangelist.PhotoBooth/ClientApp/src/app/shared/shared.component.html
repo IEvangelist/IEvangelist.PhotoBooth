@@ -1,0 +1,10 @@
+<div class="wrapper">
+    <div class="center">
+        <ng-container *ngIf="isLoading">
+            <i class="really-big glyphicon-repeat fast-spinner"></i>
+        </ng-container>
+        <ng-container *ngIf="url && !isLoading">
+            <img height="480" width="640" src="{{ url }}" />
+        </ng-container>
+    </div>
+</div>
