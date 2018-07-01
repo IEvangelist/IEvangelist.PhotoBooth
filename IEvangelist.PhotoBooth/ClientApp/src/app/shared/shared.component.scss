@@ -1,0 +1,81 @@
+$background: hsl(210, 45, 10);
+
+$brand-colors: (
+  facebook: #3b5998,
+  foursquare: #f94877,
+  twitter: #1da1f2,
+  instagram: #c13584,
+  linkedin: #00a0dc,
+  tumblr: #50698a,
+  email: #d9d926,
+  flickr: #ff0084
+);
+
+.wrapper {
+    display: grid;
+    background: rgba(0,0,0,0.7);
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 10px;
+    grid-template-areas: 
+    " twitter . . facebook "
+    " linkedin gif gif instagram "
+    " flickr gif gif email "
+    " tumblr . . foursquare "
+    ;
+    .gif {
+        grid-area: gif;
+        align-self: center;
+        justify-self: center;
+    }
+    section {
+      position: relative;
+      width:100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      a, svg {
+        display: block;
+      }
+      a {
+        position: relative; // IE8
+        height: 96px; // IE8
+        height: 9.6rem;
+        width: 96px;// IE8
+        width: 9.6rem;
+        svg {
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+}
+
+// http://thesassway.com/intermediate/understanding-placeholder-selectors
+%social-icon-hover {
+  border-radius: 100%;
+  color: $background; // IE8
+  fill: $background;
+  transform: scale(1.25);
+  transition: background-color .5s, transform .5s ease-out;
+}
+
+
+@each $brand, $color in $brand-colors {
+  section.#{$brand} {
+    grid-area: $brand;    
+    a {
+      color: $color; // IE8
+      fill: $color;
+      &:hover {
+        background:$color;
+        @extend %social-icon-hover;
+      }
+    }
+  }
+}
+
+
