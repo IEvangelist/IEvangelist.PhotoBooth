@@ -13,9 +13,10 @@ $brand-colors: (
 
 .wrapper {
     display: grid;
-    background: rgba(0,0,0,0.7);
     width: 100vw;
     height: 100vh;
+    align-items: center;
+    justify-items: center;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     grid-gap: 10px;
@@ -37,6 +38,9 @@ $brand-colors: (
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 75%;
+      width: 75%;
+      background: rgba(0,0,0,.8);
       a, svg {
         display: block;
       }
