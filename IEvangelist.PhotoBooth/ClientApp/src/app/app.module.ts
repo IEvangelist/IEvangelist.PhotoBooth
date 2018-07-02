@@ -14,6 +14,8 @@ import { PhoneNumberPipe } from './pipes/phone-number.pipe';
 import { AudioComponent } from './audio/audio.component';
 import { SharedComponent } from './shared/shared.component';
 
+import { environment } from '../environments/environment';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -35,7 +37,7 @@ import { SharedComponent } from './shared/shared.component';
     ],
     providers: [
         ImageService,
-        { provide: 'BASE_API_URL', useValue: 'https://localhost:5001/' },
+        { provide: 'BASE_API_URL', useValue: environment.baseApiUrl },
     ],
     bootstrap: [AppComponent]
 })
