@@ -33,6 +33,9 @@ $brand-colors: (
         width: 640px;
         height: 480px;
         background: black;
+        > img {
+            box-shadow: 0 0 80px black;
+        }
     }
     section {
       position: relative;
@@ -87,16 +90,15 @@ $brand-colors: (
 
 @each $brand, $color in $brand-colors {
   section.#{$brand} {
-    grid-area: $brand;    
+    grid-area: $brand;
+    box-shadow: 0 0 80px rgba(#fff, .5);
     a {
       color: $color; // IE8
       fill: $color;
       &:hover {
-        background:$color;
+        background: $color;
         @extend %social-icon-hover;
       }
     }
   }
 }
-
-

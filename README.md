@@ -1,5 +1,19 @@
 # Cream City Code - Photo Booth App
 
+### Environment Variables
+
+The keys in which our application needs to execute are as follows:
+
+ - `photoboothconnection`
+ - `twilioaccountsid`
+ - `twilioauthtoken`
+
+You can assign values to these keys from your favorite command line tool.
+
+```cmd
+set photoboothconnection "The corresponding value goes here"
+```
+
 This is an ASP.NET Core and Angular application. They are hosted separately. As such, it's easiest to start them independently.
 
 ### Angular
@@ -15,7 +29,7 @@ npm start
 From the project root directory execute the following command:
 
 ```cmd
-dotnet run -p .\IEvangelist.ProtoBooth.csproj
+dotnet run -p .\IEvangelist.ProtoBooth\IEvangelist.ProtoBooth.csproj
 ```
 
 ## Idle
@@ -33,3 +47,7 @@ dotnet run -p .\IEvangelist.ProtoBooth.csproj
 ## Send
 
 ![Send](images/send.png)
+
+## Share
+
+![Share](images/share.gif)
