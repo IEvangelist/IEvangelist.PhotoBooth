@@ -9,8 +9,6 @@ import { ImageService } from '../services/image.service';
 })
 export class SharedComponent implements OnInit {
 
-    // https://palantir.github.io/tslint/rules/no-inferrable-types/
-    // Disallows explicit type declarations for variables or parameters initialized to a number, string, or boolean
     public isLoading = true;
     public url: string;
     private id: string;

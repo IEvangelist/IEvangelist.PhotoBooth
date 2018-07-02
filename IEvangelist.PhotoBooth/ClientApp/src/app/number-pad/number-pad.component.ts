@@ -12,7 +12,7 @@ export class NumberPadComponent {
     private typeSound: HTMLAudioElement;
     private backspaceSound: HTMLAudioElement;
     private clearSound: HTMLAudioElement;
-    private userNumber: string = "";
+    private userNumber = "";
 
     constructor() { }
 

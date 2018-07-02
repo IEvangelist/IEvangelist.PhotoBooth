@@ -6,7 +6,7 @@ import { Component, AfterViewInit, Input, ViewChild, ElementRef } from '@angular
 })
 export class AudioComponent implements AfterViewInit {
     @Input('src') src: string;
-    @Input('autoplay') autoplay: boolean = false;
+    @Input('autoplay') autoplay = false;
     @ViewChild('audio') audioElement: ElementRef;    
 
     private audio: HTMLAudioElement;

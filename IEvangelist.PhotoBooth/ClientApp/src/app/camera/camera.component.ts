@@ -16,9 +16,9 @@ export class CameraComponent implements AfterViewInit {
     @ViewChild('canvas') canvasElement: ElementRef;
     private canvas: HTMLCanvasElement;
 
-    public isPresentingPhotos: boolean = false;
-    public isTextingLink: boolean = false;
-    public isTakingPhoto: boolean = false;
+    public isPresentingPhotos = false;
+    public isTextingLink = false;
+    public isTakingPhoto = false;
     public imageWidth = 640;
     public imageHeight = 480;
 
