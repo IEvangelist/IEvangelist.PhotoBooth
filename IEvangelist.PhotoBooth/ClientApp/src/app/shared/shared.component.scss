@@ -30,6 +30,9 @@ $brand-colors: (
         grid-area: gif;
         align-self: center;
         justify-self: center;
+        width: 640px;
+        height: 480px;
+        background: black;
     }
     section {
       position: relative;
@@ -56,6 +59,20 @@ $brand-colors: (
         }
       }
     }
+}
+
+@media (max-width: 1250px) {
+  .wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(480px, 135px, 135px, 135px, 135px );
+    grid-template-areas: 
+    " gif gif "
+    " twitter facebook "
+    " tumblr foursquare "
+    " linkedin instagram "
+    " flickr email "
+    ;
+  }
 }
 
 // http://thesassway.com/intermediate/understanding-placeholder-selectors
