@@ -5,10 +5,13 @@ import { ImageService } from '../services/image.service';
 @Component({
     selector: 'shared',
     templateUrl: './shared.component.html',
-    styleUrls: ['./shared.component.css']
+    styleUrls: ['./shared.component.scss']
 })
 export class SharedComponent implements OnInit {
-    public isLoading: boolean = true;
+
+    // https://palantir.github.io/tslint/rules/no-inferrable-types/
+    // Disallows explicit type declarations for variables or parameters initialized to a number, string, or boolean
+    public isLoading = true;
     public url: string;
     private id: string;
 
