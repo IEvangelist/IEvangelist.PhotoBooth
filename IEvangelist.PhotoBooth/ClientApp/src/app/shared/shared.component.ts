@@ -28,16 +28,21 @@ export class SharedComponent implements OnInit {
                 this.url = shareUrl.url;
 
                 // TODO: add more meta tags here
-                // facebook, instagram, foursquare, linkedin, etc.
                 this.meta.addTags([
-                    { name: 'twitter:card', content: 'summary_large_image' },
-                    { name: 'twitter:site', content: 'www.creamcitycode.com' },
-                    { name: 'twitter:creator', content: 'David Pine & Ben Felda' },
-                    { property: 'og:url', content: location.href },
-                    { property: 'og:title', content: 'Cream City Code -- 2018' },
-                    { property: 'og:description', content: 'Pictures from the Cream City Code 2018 #DeveloperCommunity Photo Booth App.' },
-                    { property: 'og:image', content: this.url }
-                ],
+                        { name: 'twitter:card', content: 'summary_large_image' },
+                        { name: 'twitter:creator', content: 'David Pine & Ben Felda' },
+                        { name: 'twitter:image', content: this.url },
+                        { name: 'twitter:site', content: '@creamcitycode' },                    
+                        { name: 'twitter:title', content: 'Cream City Code -- 2018' },
+                        { name: 'twitter:url', content: location.href },                    
+                        { property: 'og:description', content: 'Pictures from the Cream City Code 2018 #DeveloperCommunity Photo Booth App.' },
+                        { property: 'og:image', content: this.url },
+                        { property: 'og:image:type', content: 'image/gif' },
+                        { property: 'og:image:width', content: '640' },
+                        { property: 'og:image:height', content: '480' },
+                        { property: 'og:url', content: location.href },
+                        { property: 'og:title', content: 'Cream City Code -- 2018' }
+                    ],
                     true);
             }
         } catch (e) {
