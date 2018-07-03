@@ -1,4 +1,5 @@
-﻿using IEvangelist.PhotoBooth.Providers;
+﻿using Centare.Extensions;
+using IEvangelist.PhotoBooth.Providers;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using System;
@@ -27,12 +28,22 @@ namespace IEvangelist.PhotoBooth.Services
         {
             var cachedUri = await _cache.GetOrCreateAsync(id, async entry =>
             {
-                entry.SlidingExpiration = TimeSpan.FromHours(6);
+                try
+                {
+                    entry.SlidingExpiration = TimeSpan.FromHours(6);
 
-                var container = await _containerProvider.GetContainerAsync();
-                var reference = await container.GetBlobReferenceFromServerAsync(id);
+                    var container = await _containerProvider.GetContainerAsync();
+                    var reference = await container.GetBlobReferenceFromServerAsync(id);
 
-                return reference.Uri;
+                    return reference.Uri;
+                }
+                catch (Exception ex)
+                {
+                    ex.TryLogException(_logger);
+
+                    // Worst case scenario, fallback to somewhat reasonable URI.
+                    return new Uri($"https://ievangelistphotobooth.blob.core.windows.net/photoboothimages/{id}");
+                }
             });
 
             return cachedUri;
