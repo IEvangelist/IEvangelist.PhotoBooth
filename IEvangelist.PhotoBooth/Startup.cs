@@ -1,4 +1,5 @@
 using IEvangelist.PhotoBooth.Configuration;
+using IEvangelist.PhotoBooth.Providers;
 using IEvangelist.PhotoBooth.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,7 +30,8 @@ namespace IEvangelist.PhotoBooth
 
             // Map services
             services.AddTransient<IImageProcessorService, ImageProcessorService>();
-            services.AddSingleton<IImageRepository, ImageRepository>();
+            services.AddTransient<IImageRepository, ImageRepository>();
+            services.AddSingleton<IContainerProvider, ContainerProvider>();
             services.AddSingleton<ITextMessagingService, TextMessagingService>();
 
             // Map appsettings.json to class options
