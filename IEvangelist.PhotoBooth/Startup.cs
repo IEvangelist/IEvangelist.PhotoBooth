@@ -4,10 +4,13 @@ using IEvangelist.PhotoBooth.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Net.Http.Headers;
 using Swashbuckle.AspNetCore.Swagger;
+using System.Linq;
 
 namespace IEvangelist.PhotoBooth
 {
@@ -23,6 +26,13 @@ namespace IEvangelist.PhotoBooth
         {
             services.AddMemoryCache();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddResponseCompression(
+                options => options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
+                                {
+                                    "image/jpeg",
+                                    "image/png",
+                                    "image/gif"
+                                }));
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Info { Title = "IEvangelist Photo Booth", Version = "v1" });
@@ -61,7 +71,13 @@ namespace IEvangelist.PhotoBooth
             }
 
             app.UseHttpsRedirection()
-               .UseStaticFiles()
+               .UseResponseCompression()
+               .UseStaticFiles(new StaticFileOptions
+               {
+                   // 6 hour cache
+                   OnPrepareResponse =
+                       _ => _.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=21600"
+               })
                .UseSpaStaticFiles();
 
             app.UseCors(builder =>
