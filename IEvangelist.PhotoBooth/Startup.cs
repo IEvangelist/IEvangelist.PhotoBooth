@@ -102,10 +102,16 @@ namespace IEvangelist.PhotoBooth
                })
                .UseSpa(spa =>
                {
-                   // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                   // see https://go.microsoft.com/fwlink/?linkid=864501
+                   spa.Options.SourcePath = "ClientApp";
+                   spa.UseSpaPrerendering(options =>
+                   {
+                       options.BootModulePath = $"{spa.Options.SourcePath}/dist-server/main.bundle.js";
+                       options.BootModuleBuilder = env.IsDevelopment()
+                           ? new AngularCliBuilder(npmScript: "build:ssr")
+                           : null;
+                       options.ExcludeUrls = new[] { "/sockjs-node" };
+                   });
 
-                   spa.Options.SourcePath = "ClientApp";                   
                    if (env.IsDevelopment())
                    {
                        spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
