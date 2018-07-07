@@ -1,6 +1,6 @@
 # Cream City Code - Photo Booth App
 
-[![Build status](https://davidpine.visualstudio.com/a8331230-b250-4381-82b1-def197d3f431/_apis/build/status/1?branch=master)](https://davidpine.visualstudio.com/IEvangelist.PhotoBooth/_build/latest?definitionId=1&branch=master)
+[![Build status](https://davidpine.visualstudio.com/_apis/public/build/definitions/a8331230-b250-4381-82b1-def197d3f431/1/badge)](https://davidpine.visualstudio.com/IEvangelist.PhotoBooth/_build/latest?definitionId=1&branch=master)
 
 ### Environment Variables
 
