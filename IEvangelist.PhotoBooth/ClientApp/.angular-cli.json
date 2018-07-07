@@ -5,46 +5,50 @@
     },
     "apps": [
         {
-            "root": "src",
-            "outDir": "dist",
             "assets": [
-                "assets"
+                "assets",
+                "favicon.ico",
+                "manifest.json"
             ],
-            "index": "index.html",
-            "main": "main.ts",
-            "polyfills": "polyfills.ts",
-            "test": "test.ts",
-            "tsconfig": "tsconfig.app.json",
-            "testTsconfig": "tsconfig.spec.json",
-            "prefix": "app",
-            "styles": [
-                "styles.css",
-                "../node_modules/bootstrap/dist/css/bootstrap.min.css"
-            ],
-            "scripts": [],
-            "environmentSource": "environments/environment.ts",
-            "environments": {
-                "dev": "environments/environment.ts",
-                "prod": "environments/environment.prod.ts"
-            }
-        },
-        {
-            "name": "ssr",
-            "root": "src",
-            "outDir": "dist-server",
-            "assets": [
-                "assets"
-            ],
-            "main": "main.server.ts",
-            "tsconfig": "tsconfig.server.json",
-            "prefix": "app",
-            "scripts": [],
-            "environmentSource": "environments/environment.ts",
             "environments": {
                 "dev": "environments/environment.ts",
                 "prod": "environments/environment.prod.ts"
             },
-            "platform": "server"
+            "environmentSource": "environments/environment.ts",
+            "index": "index.html",
+            "main": "main.ts",
+            "outDir": "dist",
+            "polyfills": "polyfills.ts",
+            "prefix": "app",
+            "root": "src",
+            "scripts": [],
+            "styles": [
+                "styles.css",
+                "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "test": "test.ts",
+            "testTsconfig": "tsconfig.spec.json",
+            "tsconfig": "tsconfig.app.json"
+        },
+        {
+            "assets": [
+                "assets",
+                "favicon.ico",
+                "manifest.json"
+            ],
+            "environments": {
+                "dev": "environments/environment.ts",
+                "prod": "environments/environment.prod.ts"
+            },
+            "environmentSource": "environments/environment.ts",
+            "main": "main.server.ts",
+            "name": "ssr",
+            "outDir": "dist-server",
+            "platform": "server",
+            "prefix": "app",
+            "root": "src",
+            "scripts": [],
+            "tsconfig": "tsconfig.server.json"
         }
     ],
     "e2e": {

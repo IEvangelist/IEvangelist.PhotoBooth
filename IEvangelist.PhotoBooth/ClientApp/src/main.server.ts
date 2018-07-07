@@ -5,9 +5,12 @@ import { APP_BASE_HREF } from '@angular/common';
 import { enableProdMode } from '@angular/core';
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 import { createServerRenderer } from 'aspnet-prerendering';
+import { environment } from './environments/environment';
 export { AppServerModule } from './app/app.server.module';
 
-enableProdMode();
+if (environment.production) {
+    enableProdMode();
+}
 
 export default createServerRenderer(params => {
     const { AppServerModule, AppServerModuleNgFactory, LAZY_MODULE_MAP } = (module as any).exports;
@@ -18,6 +21,7 @@ export default createServerRenderer(params => {
         extraProviders: [
             provideModuleMap(LAZY_MODULE_MAP),
             { provide: APP_BASE_HREF, useValue: params.baseUrl },
+            { provide: 'BASE_API_URL', useValue: environment.baseApiUrl },
             { provide: 'BASE_URL', useValue: params.origin + params.baseUrl }
         ]
     };

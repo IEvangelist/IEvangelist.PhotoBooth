@@ -1,0 +1,28 @@
+{
+    "name": "Cream City Code - Photo Booth",
+    "short_name": "CCC - Photo Booth",
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "landscape",
+    "background_color": "#fff",
+    "theme_color": "#ecd290",
+    "description": "The 2018 Cream City Code, Photo Booth Application.",
+    "permissions": {
+        "camera": {
+            "description": "Required to take photo, the general purpuse of the app."
+        },
+        "storage": {
+            "description": "Required to temporarily persist images on the client before saving."
+        },
+        "network-http": {
+            "description": "Required to fetch various bits of server-side configuration."
+        }
+    },
+    "fullscreen": "true",
+    "icons": [
+        {
+            "src": "./assets/ccc-logo.svg",
+            "sizes": "any"
+        }
+    ]
+}
