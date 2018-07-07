@@ -1,5 +1,7 @@
 # Cream City Code - Photo Booth App
 
+[![Build status](https://davidpine.visualstudio.com/IEvangelist.PhotoBooth/_apis/build/status/1?branch=master)](https://davidpine.visualstudio.com/IEvangelist.PhotoBooth/_build/latest?definitionId=1&branch=master)
+
 ### Environment Variables
 
 The keys in which our application needs to execute are as follows:
