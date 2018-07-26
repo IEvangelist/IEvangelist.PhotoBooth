@@ -48,6 +48,16 @@ export class ControlWizardComponent implements OnInit {
         return this.state === WizardState.TextingLink;
     }
 
+    public get gridClasses(): any {
+        return {
+            'grid-start': this.isIdle,
+            'grid-countdown': this.isCountingDown,
+            'grid-taking-photo': this.isTakingPhoto,
+            'grid-texting-link': this.isTextingLink,
+            'grid-presenting-photos': this.isPresentingPhotos
+        }
+    }
+
     public isSending = false;
 
     public state: WizardState = WizardState.Idle;

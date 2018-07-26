@@ -4,7 +4,7 @@
     <ccc-audio #startSound [src]="'https://www.soundjay.com/switch/sounds/switch-19.mp3'"></ccc-audio>
     <ccc-audio #sendSound [src]="'https://www.soundjay.com/button/sounds/button-43.mp3'"></ccc-audio>
 
-    <div class="grid">
+    <div class="grid" [ngClass]="gridClasses">
         <header class="grid-header"></header>
 
         <div class="grid-left">
@@ -64,7 +64,7 @@
                 <i class="glyphicon glyphicon-send"></i><br /> Send
             </button>
 
-            <button *ngIf="isTextingLink" class="ccc-button ccc-bg-orange" (click)="generate(sendSound)" [disabled]="isSending">
+            <button *ngIf="isTextingLink" [style.width] = "!isSending ? '318px' : 'auto'" class="ccc-button ccc-bg-orange" (click)="generate(sendSound)" [disabled]="isSending">
                 <div *ngIf="isSending">
                     <i class="glyphicon glyphicon-repeat fast-spinner"></i><br /> Sending
                 </div>
@@ -74,7 +74,7 @@
             </button>
         </div>
 
-        <footer class="grid-footer">
+        <footer *ngIf="!isPresentingPhotos" class="grid-footer">
             <img *ngIf="isIdle" class="black-glow" src="../../assets/ccc-horizontal-logo.png" height="250" />
             <div *ngIf="isTextingLink" class="phone-number black-glow">
                 {{ phoneNumber | phone }}

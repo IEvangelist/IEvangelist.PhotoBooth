@@ -75,12 +75,31 @@ div.overlay {
 .grid {
     display: grid;
     grid-gap: 10px;
-    padding: 10px;
-    grid-template-areas: 'header header header' 'left content right' 'footer footer footer';
     height: 100%;
     width: 100%;
     align-items: center;
     text-align: center;
+}
+
+.grid-start,
+.grid-countdown,
+.grid-taking-photo,
+.grid-texting-link {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: .75fr 1ft 1fr;
+    grid-template-areas: 
+    'header header header' 
+    'left content right' 
+    'footer footer footer';
+}
+
+.grid-presenting-photos {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr .5fr 0fr;
+    grid-template-areas:
+    'content content content' 
+    'left . right'
+    'footer footer footer';
 }
 
 .grid-header {
