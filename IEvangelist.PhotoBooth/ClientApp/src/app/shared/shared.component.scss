@@ -11,25 +11,6 @@ $brand-colors: (
   flickr #ff0084
 );
 
-@media (max-width: 1250px) {
-  .wrapper {
-    display: grid;
-    overflow: auto;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 510px 135px 135px 135px 135px;
-    grid-template-areas: 
-    " gif gif "
-    " twitter facebook "
-    " tumblr foursquare "
-    " linkedin instagram "
-    " flickr email "
-    ;
-    .gif {
-      margin-top:30px;
-    }
-  }
-}
-
 .wrapper {
     display: grid;
     width: 100vw;
@@ -58,8 +39,6 @@ $brand-colors: (
     }
     section {
       position: relative;
-      width:100%;
-      height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -84,6 +63,48 @@ $brand-colors: (
         }
       }
     }
+}
+
+
+@media (max-width: 1250px) {
+  .wrapper {
+    display: grid;
+    overflow: auto;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 510px 135px 135px 135px 135px;
+    grid-template-areas: 
+    " gif gif "
+    " twitter facebook "
+    " tumblr foursquare "
+    " linkedin instagram "
+    " flickr email "
+    ;
+    .gif {
+      margin-top:30px;
+    }
+  }
+}
+
+
+@media (max-width: 640px) {
+  .wrapper {
+    display: block;
+    overflow: auto;
+    .gif {
+      margin-top:0;
+      width:100%;
+      height:auto;
+      > img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    section {
+      width: 100%;
+      height: 100px;
+      margin: 10px 0;
+    }
+  }
 }
 
 
