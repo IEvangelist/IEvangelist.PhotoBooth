@@ -94,12 +94,11 @@ div.overlay {
 }
 
 .grid-presenting-photos {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 1fr .5fr 0fr;
     grid-template-areas:
-    'content content content' 
-    'left . right'
-    'footer footer footer';
+    'content content content content content' 
+    '. left . right .';
 }
 
 .grid-header {

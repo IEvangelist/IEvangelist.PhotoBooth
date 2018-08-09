@@ -9,6 +9,10 @@ body {
     background-image: url("assets/ccc-mark.png");
 }
 
+ol {
+    -webkit-padding-start: 0px;
+}
+
 .bold {
     font-weight: bold;
 }

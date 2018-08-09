@@ -35,7 +35,7 @@
                 </ccc-audio>
             </div>
 
-            <div *ngIf="isPresentingPhotos" class="card ccc-border black-glow">
+            <div *ngIf="isPresentingPhotos" style="width:967px; margin:auto" class="card ccc-border black-glow">
 
                 <div class="col-1">
                     <img *ngIf="images.length" src="{{ images[animationIndex] }}" width="640" height="480" />
@@ -64,7 +64,7 @@
                 <i class="glyphicon glyphicon-send"></i><br /> Send
             </button>
 
-            <button *ngIf="isTextingLink" [style.width] = "!isSending ? '318px' : 'auto'" class="ccc-button ccc-bg-orange" (click)="generate(sendSound)" [disabled]="isSending">
+            <button *ngIf="isTextingLink" class="ccc-button ccc-bg-orange" (click)="generate(sendSound)" [disabled]="isSending">
                 <div *ngIf="isSending">
                     <i class="glyphicon glyphicon-repeat fast-spinner"></i><br /> Sending
                 </div>
@@ -79,6 +79,7 @@
             <div *ngIf="isTextingLink" class="phone-number black-glow">
                 {{ phoneNumber | phone }}
             </div>
+            <span style="color:silver">Standard phone rates will apply.</span>
         </footer>
     </div>
 

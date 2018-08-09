@@ -2,7 +2,7 @@ div.keyboard {
     width: 460px;
     height: 150px;
     margin: 0 auto;
-    margin-left: 17%;
+    /* margin-left: 17%; */
 }
 
 ol.keys {
