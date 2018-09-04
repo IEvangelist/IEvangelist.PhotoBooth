@@ -13,7 +13,7 @@ import { NumberPadComponent } from './number-pad/number-pad.component';
 import { PhoneNumberPipe } from './pipes/phone-number.pipe';
 import { AudioComponent } from './audio/audio.component';
 import { SharedComponent } from './shared/shared.component';
-
+import { ShareModule } from '@ngx-share/core';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -30,6 +30,7 @@ import { environment } from '../environments/environment';
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
         HttpClientModule,
         FormsModule,
+        ShareModule.forRoot(),
         RouterModule.forRoot([
             { path: '', component: CameraComponent, pathMatch: 'full' },
             { path: 'images/:id', component: SharedComponent }

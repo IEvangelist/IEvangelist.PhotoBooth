@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ImageService } from '../services/image.service';
-
+import { ShareButtons } from '@ngx-share/core';
 @Component({
     selector: 'shared',
     templateUrl: './shared.component.html',
@@ -15,6 +15,7 @@ export class SharedComponent implements OnInit {
     private id: string;
 
     constructor(
+        public share:ShareButtons,
         private readonly imageService: ImageService,
         private readonly route: ActivatedRoute,
         private readonly meta: Meta) {
