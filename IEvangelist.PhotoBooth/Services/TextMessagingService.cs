@@ -39,8 +39,8 @@ namespace IEvangelist.PhotoBooth.Services
                         to: toPhoneNumber,
                         from: _options.FromPhoneNumber,
                         body: body);
-
-                _logger.LogInformation($"Texted {toPhoneNumber}: {body}.");
+                
+                _logger.LogInformation($"Texted {toPhoneNumber}: {body}. Message: {message}.");
             }
             catch (Exception ex)
             {

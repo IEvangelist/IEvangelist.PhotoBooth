@@ -15,43 +15,40 @@ namespace IEvangelist.PhotoBooth.Providers
     {
         private static AsyncLazy<CloudBlobContainer> _initialization;
 
-        private readonly ImageRepositoryOptions _repositoryOptions;
-        private readonly ILogger<ContainerProvider> _logger;
-
         public ContainerProvider(
             IOptions<ImageRepositoryOptions> repositoryOptions,
             ILogger<ContainerProvider> logger)
         {
-            _repositoryOptions = repositoryOptions?.Value ?? throw new ArgumentNullException(nameof(repositoryOptions));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            var repositoryOptions1 = repositoryOptions?.Value ?? throw new ArgumentNullException(nameof(repositoryOptions));
+            var logger1 = logger ?? throw new ArgumentNullException(nameof(logger));
 
             Interlocked.Exchange(ref _initialization, new AsyncLazy<CloudBlobContainer>(InitializeAsync));
 
             async Task<CloudBlobContainer> InitializeAsync()
             {
-                var connectionString = Environment.GetEnvironmentVariable(_repositoryOptions.ConnectionStringKey);
-                if (CloudStorageAccount.TryParse(connectionString, out var account))
+                var connectionString = Environment.GetEnvironmentVariable(repositoryOptions1.ConnectionStringKey);
+                if (!CloudStorageAccount.TryParse(connectionString, out var account))
                 {
-                    try
-                    {
-                        var client = account.CreateCloudBlobClient();
-                        var container = client.GetContainerReference(_repositoryOptions.ContainerName);
-                        await container.CreateIfNotExistsAsync();
-                        await container.SetPermissionsAsync(new BlobContainerPermissions
-                        {
-                            PublicAccess = BlobContainerPublicAccessType.Blob
-                        });
-
-                        return container;
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.TryLogException(_logger);
-                        throw ex;
-                    }
+                    throw new Exception("Unable to connect to Azure Storage Account Container!");
                 }
 
-                throw new Exception("Unable to connect to Azure Storage Account Container!");
+                try
+                {
+                    var client = account.CreateCloudBlobClient();
+                    var container = client.GetContainerReference(repositoryOptions1.ContainerName);
+                    await container.CreateIfNotExistsAsync();
+                    await container.SetPermissionsAsync(new BlobContainerPermissions
+                    {
+                        PublicAccess = BlobContainerPublicAccessType.Blob
+                    });
+
+                    return container;
+                }
+                catch (Exception ex)
+                {
+                    ex.TryLogException(logger1);
+                    throw;
+                }
             };
         }
 

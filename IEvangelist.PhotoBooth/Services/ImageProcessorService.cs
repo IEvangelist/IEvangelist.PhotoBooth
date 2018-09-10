@@ -53,7 +53,7 @@ namespace IEvangelist.PhotoBooth.Services
                 var image = Image.Load(imageBytes[0]);
                 image.MetaData.RepeatCount = 0;
 
-                for (int i = 1; i < imageBytes.Length; ++ i)
+                for (var i = 1; i < imageBytes.Length; ++ i)
                 {
                     image.Frames.AddFrame(Image.Load(imageBytes[i]).Frames[0]);
                 }
