@@ -19,14 +19,13 @@ namespace IEvangelist.PhotoBooth.Providers
             IOptions<ImageRepositoryOptions> repositoryOptions,
             ILogger<ContainerProvider> logger)
         {
-            var repositoryOptions1 = repositoryOptions?.Value ?? throw new ArgumentNullException(nameof(repositoryOptions));
-            var logger1 = logger ?? throw new ArgumentNullException(nameof(logger));
-
+            var repositoryOptionsValue = repositoryOptions?.Value ?? throw new ArgumentNullException(nameof(repositoryOptions));
+            
             Interlocked.Exchange(ref _initialization, new AsyncLazy<CloudBlobContainer>(InitializeAsync));
 
             async Task<CloudBlobContainer> InitializeAsync()
             {
-                var connectionString = Environment.GetEnvironmentVariable(repositoryOptions1.ConnectionStringKey);
+                var connectionString = Environment.GetEnvironmentVariable(repositoryOptionsValue.ConnectionStringKey);
                 if (!CloudStorageAccount.TryParse(connectionString, out var account))
                 {
                     throw new Exception("Unable to connect to Azure Storage Account Container!");
@@ -35,7 +34,7 @@ namespace IEvangelist.PhotoBooth.Providers
                 try
                 {
                     var client = account.CreateCloudBlobClient();
-                    var container = client.GetContainerReference(repositoryOptions1.ContainerName);
+                    var container = client.GetContainerReference(repositoryOptionsValue.ContainerName);
                     await container.CreateIfNotExistsAsync();
                     await container.SetPermissionsAsync(new BlobContainerPermissions
                     {
@@ -46,10 +45,10 @@ namespace IEvangelist.PhotoBooth.Providers
                 }
                 catch (Exception ex)
                 {
-                    ex.TryLogException(logger1);
+                    ex.TryLogException(logger);
                     throw;
                 }
-            };
+            }
         }
 
         public Task<CloudBlobContainer> GetContainerAsync() => _initialization.Value;
