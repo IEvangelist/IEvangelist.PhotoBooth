@@ -30,6 +30,8 @@ export class SharedComponent implements OnInit {
 
                 // TODO: add more meta tags here
                 this.meta.addTags([
+                        { name: 'title', content: 'Cream City Code -- 2018' },
+                        { name: 'description', content: 'Pictures from the Cream City Code 2018 #DeveloperCommunity Photo Booth App.' },
                         { name: 'twitter:card', content: 'summary_large_image' },
                         { name: 'twitter:creator', content: 'David Pine & Ben Felda' },
                         { name: 'twitter:image', content: this.url },
@@ -42,7 +44,8 @@ export class SharedComponent implements OnInit {
                         { property: 'og:image:width', content: '640' },
                         { property: 'og:image:height', content: '480' },
                         { property: 'og:url', content: location.href },
-                        { property: 'og:title', content: 'Cream City Code -- 2018' }
+                        { property: 'og:title', content: 'Cream City Code -- 2018' },
+                        { property: 'og:type', content:'place'}
                     ],
                     true);
             }

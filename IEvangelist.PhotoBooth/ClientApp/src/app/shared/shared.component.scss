@@ -14,7 +14,7 @@ $brand-colors: (
     align-items: center;
     justify-items: center;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     grid-gap: 10px;
     grid-template-areas: 
     " linkedin gif gif twitter "
@@ -39,10 +39,11 @@ $brand-colors: (
       height: 75%;
       width: 75%;
       background: rgba(0,0,0,.8);
-      a, svg {
+      div, svg {
         display: block;
+        cursor: pointer;
       }
-      a {
+      div {
         position: relative; // IE8
         height: 100%;
         width: 100%;
@@ -65,7 +66,7 @@ $brand-colors: (
     display: grid;
     overflow: auto;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 510px 135px 135px 135px 135px;
+    grid-template-rows: 510px 135px 135px;
     grid-template-areas: 
     " gif gif "
     " twitter facebook "
@@ -116,7 +117,7 @@ $brand-colors: (
   section.#{$brand} {
     grid-area: $brand;
     box-shadow: 0 0 80px rgba(#fff, .5);
-    a {
+    div {
       color: $color; // IE8
       fill: $color;
       &:hover {
