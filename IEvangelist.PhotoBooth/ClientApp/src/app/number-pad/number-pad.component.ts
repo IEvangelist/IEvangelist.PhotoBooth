@@ -4,7 +4,7 @@ import { AudioComponent } from '../audio/audio.component';
 @Component({
     selector: 'number-pad',
     templateUrl: './number-pad.component.html',
-    styleUrls: ['./number-pad.component.css']
+    styleUrls: ['./number-pad.component.scss']
 })
 export class NumberPadComponent {
     @Output() numberChanged = new EventEmitter<string>();

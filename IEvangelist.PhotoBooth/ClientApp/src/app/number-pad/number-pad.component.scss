@@ -1,0 +1,35 @@
+div.keyboard {
+    width: 460px;
+    height: 150px;
+    margin: 0 auto;
+    /* margin-left: 17%; */
+}
+
+ol.keys {
+    list-style-type: none;
+    user-select: none;
+    li {
+        width: 33.33%;
+        display: block;
+        text-align: center;
+        height: 4em;
+        float: left;
+        font-size: 2.5em;
+        padding-top: .7em;
+        border: 1px solid rgb(100,100,100);
+        color: white;
+        background-color: rgba(0,0,0,.7);
+        &:hover {
+            cursor: pointer;
+        }
+        &:active {
+            background-color: rgb(0,0,0);
+            color: #000;
+        }
+    }
+}
+
+.number {
+    font-size: 2.2em;
+    color: white;
+}
