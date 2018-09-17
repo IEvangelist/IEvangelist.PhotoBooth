@@ -1,3 +1,4 @@
+/* ReSharper disable once CssNotResolved */
 :host {
     overflow: hidden !important;
 }
@@ -9,9 +10,17 @@
     width: 100%;
     background: rgba(0, 0, 0, 0.3);
     display: flex;
+    -moz-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    -o-flex-flow: row wrap;
+    -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
-    justify-content: flex-start;
+    -o-justify-content: center;
+    -webkit-justify-content: center;
     justify-content: center;
+    -ms-align-items: center;
+    -o-align-items: center;
+    -webkit-align-items: center;
     align-items: center;
 }
 
@@ -26,6 +35,7 @@ div.overlay {
 .start-btn {
     font-size: 60px;
     padding: 32px 64px;
+    -ms-border-radius: 12px;
     border-radius: 12px;
     border-width: 0px;
     color: whitesmoke;
@@ -69,14 +79,20 @@ div.overlay {
 }
 
 .bottom {
+    -o-flex-shrink: 0;
+    -webkit-flex-shrink: 0;
     flex-shrink: 0;
 }
 
 .grid {
     display: grid;
+    /* ReSharper disable once CssNotResolved */
     grid-gap: 10px;
     height: 100%;
     width: 100%;
+    -ms-align-items: center;
+    -o-align-items: center;
+    -webkit-align-items: center;
     align-items: center;
     text-align: center;
 }
@@ -88,17 +104,17 @@ div.overlay {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: .75fr 1ft 1fr;
     grid-template-areas: 
-    'header header header' 
-    'left content right' 
-    'footer footer footer';
+                       'header header header' 
+                       'left content right' 
+                       'footer footer footer';
 }
 
 .grid-presenting-photos {
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 1fr .5fr 0fr;
     grid-template-areas:
-    'content content content content content' 
-    '. left . right .';
+                       'content content content content content' 
+                       '. left . right .';
 }
 
 .grid-header {
@@ -107,6 +123,9 @@ div.overlay {
 
 .grid-content {
     grid-area: content;
+    -moz-align-content: center;
+    -o-align-content: center;
+    -webkit-align-content: center;
     align-content: center
 }
 
@@ -146,6 +165,7 @@ div.overlay {
 
 .ccc-bg-morph {
     -webkit-animation: bg-morph 9s infinite linear;
+    -ms-animation: bg-morph 9s infinite linear;
     animation: bg-morph 9s infinite linear;
 }
 
