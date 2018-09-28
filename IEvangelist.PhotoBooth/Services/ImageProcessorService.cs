@@ -65,7 +65,8 @@ namespace IEvangelist.PhotoBooth.Services
                 }
 
                 await UploadImageAsync(id, image);
-                await _textMessagingService.SendTextAsync($"+{request.Phone}", $"Share your photo from Cream City Code! {baseUrl}/{id}");
+
+                _textMessagingService.SendText($"+{request.Phone}", $"Share your photo from Cream City Code! {baseUrl}/{id}");
 
                 return new ImagesPostResponse { Id = id, IsSuccessful = true };
             }

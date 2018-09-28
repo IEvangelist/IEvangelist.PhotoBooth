@@ -4,6 +4,6 @@ namespace IEvangelist.PhotoBooth.Services
 {
     public interface ITextMessagingService
     {
-        Task SendTextAsync(string toPhoneNumber, string body);
+        void SendText(string toPhoneNumber, string body);
     }
 }

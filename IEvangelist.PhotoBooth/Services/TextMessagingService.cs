@@ -30,22 +30,24 @@ namespace IEvangelist.PhotoBooth.Services
             TwilioClient.Init(accountId, authToken);
         }
 
-        public async Task SendTextAsync(string toPhoneNumber, string body)
-        {
-            try
-            {
-                var message =
-                    await MessageResource.CreateAsync(
-                        to: toPhoneNumber,
-                        from: _options.FromPhoneNumber,
-                        body: body);
-                
-                _logger.LogInformation($"Texted {toPhoneNumber}: {body}. Message: {message}.");
-            }
-            catch (Exception ex)
-            {
-                ex.TryLogException(_logger);
-            }            
-        }
+        public void SendText(string toPhoneNumber, string body) 
+            => Task.Run(() =>
+               {
+                   // Fire and forget, we just send the text message and don't care about the results.
+                   try
+                   {
+                       var message =
+                           MessageResource.Create(
+                               to: toPhoneNumber,
+                               from: _options.FromPhoneNumber,
+                               body: body);
+
+                       _logger.LogInformation($"Texted {toPhoneNumber}: {body}. Message: {message}.");
+                   }
+                   catch (Exception ex)
+                   {
+                       ex.TryLogException(_logger);
+                   }
+               });
     }
 }

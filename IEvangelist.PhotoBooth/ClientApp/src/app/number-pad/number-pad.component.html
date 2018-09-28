@@ -7,20 +7,20 @@
 
 <div class="keyboard">
     <ol class="keys">
-        <li (click)="onType('1', type)">1</li>
-        <li (click)="onType('2', type)">2</li>
-        <li (click)="onType('3', type)">3</li>
-        <li (click)="onType('4', type)">4</li>
-        <li (click)="onType('5', type)">5</li>
-        <li (click)="onType('6', type)">6</li>
-        <li (click)="onType('7', type)">7</li>
-        <li (click)="onType('8', type)">8</li>
-        <li (click)="onType('9', type)">9</li>
-        <li (click)="onDelete(backspace)">
+        <li (tap)="onType('1', type)">1</li>
+        <li (tap)="onType('2', type)">2</li>
+        <li (tap)="onType('3', type)">3</li>
+        <li (tap)="onType('4', type)">4</li>
+        <li (tap)="onType('5', type)">5</li>
+        <li (tap)="onType('6', type)">6</li>
+        <li (tap)="onType('7', type)">7</li>
+        <li (tap)="onType('8', type)">8</li>
+        <li (tap)="onType('9', type)">9</li>
+        <li (tap)="onDelete(backspace)">
             <i class="glyphicon glyphicon-circle-arrow-left"></i>
         </li>
-        <li (click)="onType('0', type)">0</li>
-        <li (click)="onClear(clear)">
+        <li (tap)="onType('0', type)">0</li>
+        <li (tap)="onClear(clear)">
             <i class="glyphicon glyphicon-remove-sign"></i>
         </li>
     </ol>
