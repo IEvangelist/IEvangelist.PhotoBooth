@@ -3,6 +3,7 @@ import 'reflect-metadata';
 import { renderModule, renderModuleFactory } from '@angular/platform-server';
 import { APP_BASE_HREF } from '@angular/common';
 import { enableProdMode } from '@angular/core';
+import 'hammerjs'
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 import { createServerRenderer } from 'aspnet-prerendering';
 import { environment } from './environments/environment';
