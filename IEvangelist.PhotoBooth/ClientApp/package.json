@@ -15,7 +15,6 @@
         "@fortawesome/free-brands-svg-icons": "^5.3.1",
         "@fortawesome/free-solid-svg-icons": "^5.3.1",
         "@nguniversal/module-map-ngfactory-loader": "^6.1.0",
-        "@ngx-share/core": "^5.3.1",
         "aspnet-prerendering": "^3.0.1",
         "bootstrap": "^3.3.7",
         "core-js": "^2.4.1",
