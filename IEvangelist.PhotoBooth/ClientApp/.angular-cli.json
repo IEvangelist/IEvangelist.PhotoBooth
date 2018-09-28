@@ -29,52 +29,14 @@
             "test": "test.ts",
             "testTsconfig": "tsconfig.spec.json",
             "tsconfig": "tsconfig.app.json"
-        },
-        {
-            "assets": [
-                "assets",
-                "favicon.ico",
-                "manifest.json"
-            ],
-            "environments": {
-                "dev": "environments/environment.ts",
-                "prod": "environments/environment.prod.ts"
-            },
-            "environmentSource": "environments/environment.ts",
-            "main": "main.server.ts",
-            "name": "ssr",
-            "outDir": "dist-server",
-            "platform": "server",
-            "prefix": "app",
-            "root": "src",
-            "scripts": [],
-            "tsconfig": "tsconfig.server.json"
         }
     ],
-    "e2e": {
-        "protractor": {
-            "config": "./protractor.conf.js"
-        }
-    },
     "lint": [
         {
             "project": "src/tsconfig.app.json",
             "exclude": "**/node_modules/**"
-        },
-        {
-            "project": "src/tsconfig.spec.json",
-            "exclude": "**/node_modules/**"
-        },
-        {
-            "project": "e2e/tsconfig.e2e.json",
-            "exclude": "**/node_modules/**"
         }
     ],
-    "test": {
-        "karma": {
-            "config": "./karma.conf.js"
-        }
-    },
     "defaults": {
         "styleExt": "css",
         "component": {
