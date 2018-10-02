@@ -69,6 +69,15 @@ div.overlay {
     flex-direction: row;    
 }
 
+.gif-side{
+    width:150px;
+    background: black;
+}
+
+.wider{
+    width:318px;
+}
+
 .col-1 {
     flex-direction: column;
 }
@@ -149,6 +158,10 @@ div.overlay {
     font-size: 38px;
 }
 
+.ccc-border-beige{
+    border: solid #ecd290 2px;
+}
+
 .ccc-border {
     border: 5px solid #1a1915;
     box-shadow: 0 0 80px #010101;
@@ -167,6 +180,14 @@ div.overlay {
     -webkit-animation: bg-morph 9s infinite linear;
     -ms-animation: bg-morph 9s infinite linear;
     animation: bg-morph 9s infinite linear;
+}
+
+.left-image {
+    transform: rotate(90deg);
+}
+
+.right-image {
+    transform: rotate(90deg);
 }
 
 @-webkit-keyframes bg-morph {
