@@ -21,10 +21,10 @@ namespace IEvangelist.PhotoBooth.Services
             _options = twilioOptions?.Value ?? throw new ArgumentNullException(nameof(twilioOptions));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
-           var accountId = "Environment.GetEnvironmentVariable(_options.AccountIdKey)" 
+           var accountId = Environment.GetEnvironmentVariable(_options.AccountIdKey) 
                 ?? throw new ApplicationException($"Misconfigured environment variable. Missing {_options.AccountIdKey} value.");
 
-            var authToken = "Environment.GetEnvironmentVariable(_options.AuthTokenKey)"
+            var authToken = Environment.GetEnvironmentVariable(_options.AuthTokenKey)
                 ?? throw new ApplicationException($"Misconfigured environment variable. Missing {_options.AuthTokenKey} value.");
 
             TwilioClient.Init(accountId, authToken);
