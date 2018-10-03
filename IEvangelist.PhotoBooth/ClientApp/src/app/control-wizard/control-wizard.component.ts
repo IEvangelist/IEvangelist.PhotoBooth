@@ -60,7 +60,7 @@ export class ControlWizardComponent implements OnInit {
 
     public isSending = false;
 
-    public state: WizardState = WizardState.Idle;
+    public state: WizardState = WizardState.TextingLink;
     public photoCountDown: number;
     public images: string[] = [];
     public animationIndex: number = 0;
