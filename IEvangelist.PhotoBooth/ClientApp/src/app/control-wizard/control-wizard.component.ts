@@ -99,6 +99,7 @@ export class ControlWizardComponent implements OnInit {
         }
         this.changeState(WizardState.Idle);
         this.photosTaken = 0;
+        this.phoneNumber = "(414) 000-0000";
         this.photoCountDown = this.imageOptions.photoCountDownDefault;
         this.stopCountDownTimer();
         this.stopAnimationTimer();
