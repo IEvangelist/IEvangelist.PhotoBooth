@@ -23,7 +23,7 @@ export class ImageService {
                    .toPromise();
     }
 
-    public generateAnimiation(phoneNumber: string, images: string[]) {
+    public generateAnimation(phoneNumber: string, images: string[]) {
         let phone =
             phoneNumber && phoneNumber.length > 11
                 ? phoneNumber.substring(0, 11)

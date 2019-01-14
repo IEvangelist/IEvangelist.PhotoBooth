@@ -64,7 +64,7 @@ export class ControlWizardComponent implements OnInit {
     public photoCountDown: number;
     public images: string[] = [];
     public animationIndex: number = 0;
-    public phoneNumber: string = "(414) 000-0000";
+    public phoneNumber: string = '(414) 000-0000';
 
     private countDownTimer: NodeJS.Timer;
     private animationTimer: NodeJS.Timer;
@@ -99,7 +99,7 @@ export class ControlWizardComponent implements OnInit {
         }
         this.changeState(WizardState.Idle);
         this.photosTaken = 0;
-        this.phoneNumber = "(414) 000-0000";
+        this.phoneNumber = '(414) 000-0000';
         this.photoCountDown = this.imageOptions.photoCountDownDefault;
         this.stopCountDownTimer();
         this.stopAnimationTimer();
@@ -113,7 +113,7 @@ export class ControlWizardComponent implements OnInit {
             this.isSending = true;
             const id =
                 await this.imageService
-                          .generateAnimiation(this.phoneNumber, this.images)
+                          .generateAnimation(this.phoneNumber, this.images)
                           .then(() => this.isSending = false);
         }
     }
@@ -155,7 +155,7 @@ export class ControlWizardComponent implements OnInit {
                     } else {
                         this.stopCountDownTimer();
                         this.images = [];
-                        for (var i = 0; i < this.imageOptions.photosToTake; ++ i) {
+                        for (let i = 0; i < this.imageOptions.photosToTake; ++ i) {
                             this.images.push(localStorage.getItem(`${i}.image.png`));
                         }
                         this.startAnimationTimer();
