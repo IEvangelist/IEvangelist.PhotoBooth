@@ -66,6 +66,7 @@ namespace IEvangelist.PhotoBooth.Services
 
                 await UploadImageAsync(id, image);
 
+                baseUrl = baseUrl.EndsWith("/") ? baseUrl.TrimEnd('/') : baseUrl;
                 _textMessagingService.SendText($"+{request.Phone}", $"{baseUrl}/{id}");
 
                 return new ImagesPostResponse { Id = id, IsSuccessful = true };
