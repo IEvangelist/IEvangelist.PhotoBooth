@@ -64,6 +64,10 @@ div.overlay {
     margin-top: auto;
 }
 
+.white-glow {
+    filter: drop-shadow(0 0 1px #fff)
+}
+
 .card {
     display: flex;
     flex-direction: row;    

@@ -50,6 +50,7 @@ namespace IEvangelist.PhotoBooth
             services.Configure<ImageCaptureOptions>(Configuration.GetSection(nameof(ImageCaptureOptions)));
             services.Configure<ImageRepositoryOptions>(Configuration.GetSection(nameof(ImageRepositoryOptions)));
             services.Configure<TwilioOptions>(Configuration.GetSection(nameof(TwilioOptions)));
+            services.Configure<SocializeOptions>(Configuration.GetSection(nameof(SocializeOptions)));
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
