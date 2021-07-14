@@ -31,7 +31,7 @@ npm start
 From the project root directory execute the following command:
 
 ```cmd
-dotnet run -p .\IEvangelist.ProtoBooth\IEvangelist.ProtoBooth.csproj
+dotnet run -p .\IEvangelist.PhotoBooth\IEvangelist.PhotoBooth.csproj
 ```
 
 ## Idle
